@@ -5,6 +5,7 @@ class pcp (
   $repo_baseurl = $pcp::params::repo_baseurl,
 
   # Package
+  $package_ensure   = 'present',
   $package_name     = 'pcp',
   $extra_packages   = [],
 

@@ -1,9 +1,11 @@
 # Private class: See README.md.
 class pcp::install {
 
-  $_main_packages = [$pcp::package_name]
-  $_packages = union($_main_packages, $pcp::extra_packages)
+  package { 'pcp':
+    ensure => $pcp::package_ensure,
+    name   => $pcp::package_name,
+  }
 
-  ensure_packages($_packages)
+  ensure_packages($pcp::extra_packages, {'ensure' => $pcp::package_ensure})
 
 }
