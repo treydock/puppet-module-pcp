@@ -64,6 +64,25 @@ describe 'pcp::pmda' do
         end
       end
 
+      context 'when config defined' do
+        let(:params) {{ :config_content => 'some content' }}
+
+        it do
+          is_expected.to contain_file('pmda-config-test').with({
+            :ensure   => 'present',
+            :path     => '/var/lib/pcp/config/test/test.conf',
+            :owner    => 'root',
+            :group    => 'root',
+            :mode     => '0644',
+            :content  => 'some content',
+            :source   => nil,
+            :require  => nil,
+            :before   => 'Exec[install-test]',
+            :notify   => 'Service[pmcd]',
+          })
+        end
+      end
+
     end
   end
 end
