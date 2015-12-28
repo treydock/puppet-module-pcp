@@ -10,6 +10,7 @@ describe 'pcp::pmda' do
       let(:title) { 'test' }
       let(:params) {{ }}
 
+      it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_pcp__pmda('test') }
       it { is_expected.not_to contain_package('pcp-pmda-test') }
 
@@ -31,7 +32,7 @@ describe 'pcp::pmda' do
         it do
           is_expected.to contain_package('pcp-pmda-test').with({
             :ensure   => 'present',
-            :require  => nil,
+            :require  => 'Class[Pcp::Repo]',
             :notify   => 'Exec[install-test]',
           })
         end

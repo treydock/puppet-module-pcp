@@ -9,7 +9,7 @@ define pcp::pmda (
   $config_source    = undef,
 ) {
 
-  require 'pcp'
+  include pcp
 
   validate_bool(
     $has_package
@@ -21,7 +21,7 @@ define pcp::pmda (
 
   case $ensure {
     'present': {
-      $_package_require = undef
+      $_package_require = Class['pcp::repo']
       $_package_notify  = Exec["install-${name}"]
       $_config_before   = Exec["install-${name}"]
     }

@@ -10,6 +10,7 @@ describe 'pcp::pmie' do
       let(:title) { 'local' }
       let(:params) {{ :args => '-c config.default' }}
 
+      it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_pcp__pmie('local') }
 
       it do

@@ -11,7 +11,7 @@ define pcp::pmlogger (
   $config_source  = undef,
 ) {
 
-  require 'pcp'
+  include pcp
 
   validate_bool(
     $primary,

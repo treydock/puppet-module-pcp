@@ -10,7 +10,7 @@ define pcp::pmie (
   $config_source  = undef,
 ) {
 
-  require 'pcp'
+  include pcp
 
   if $socks {
     $_socks = 'y'

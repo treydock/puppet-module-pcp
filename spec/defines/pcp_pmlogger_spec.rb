@@ -10,6 +10,7 @@ describe 'pcp::pmlogger' do
       let(:title) { 'local' }
       let(:params) {{ :primary => true, :args => '-r -T24h10m -c config.default' }}
 
+      it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_pcp__pmlogger('local') }
 
       it do

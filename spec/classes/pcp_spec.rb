@@ -7,7 +7,7 @@ describe 'pcp' do
         facts
       end
 
-      it { should compile.with_all_deps }
+      it { is_expected.to compile.with_all_deps }
 
       it { is_expected.to create_class('pcp') }
       it { is_expected.to contain_class('pcp::params') }
