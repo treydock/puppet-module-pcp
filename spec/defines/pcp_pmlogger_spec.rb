@@ -6,7 +6,8 @@ describe 'pcp::pmlogger' do
       let(:facts) do
         facts
       end
-      
+
+      let(:pre_condition) { "class { 'pcp': include_default_pmlogger => false }" }
       let(:title) { 'local' }
       let(:params) {{ :primary => true, :args => '-r -T24h10m -c config.default' }}
 

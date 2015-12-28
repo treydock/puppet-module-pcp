@@ -18,8 +18,8 @@ class pcp (
   $pcp_user_uid     = undef,
 
   # Config
-  $include_default_pmlogger = false,
-  $include_default_pmie     = false,
+  $include_default_pmlogger = true,
+  $include_default_pmie     = true,
   $pmlogger_daily_args      = '-X xz -x 3',
 
   # Resources

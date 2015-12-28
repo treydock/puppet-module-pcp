@@ -7,6 +7,7 @@ describe 'pcp::pmie' do
         facts
       end
       
+      let(:pre_condition) { "class { 'pcp': include_default_pmie => false }" }
       let(:title) { 'local' }
       let(:params) {{ :args => '-c config.default' }}
 

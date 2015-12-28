@@ -12,6 +12,13 @@ shared_examples_for 'pcp::config' do |facts|
   end
 
   it do
+    is_expected.to contain_pcp__pmlogger('local').with({
+      :primary  => 'true',
+      :args     => '-r -T24h10m -c config.default',
+    })
+  end
+
+  it do
     is_expected.to contain_file('/etc/pcp/pmie/control.d').with({
       :ensure   => 'directory',
       :owner    => 'root',
@@ -22,8 +29,11 @@ shared_examples_for 'pcp::config' do |facts|
     })
   end
 
-  it { is_expected.not_to contain_pcp__pmlogger('local') }
-  it { is_expected.not_to contain_pcp__pmie('local') }
+  it do
+    is_expected.to contain_pcp__pmie('local').with({
+      :args => '-c config.default',
+    })
+  end
 
   it do
     is_expected.to contain_file('/etc/cron.d/pcp-pmlogger').with({
@@ -55,23 +65,14 @@ shared_examples_for 'pcp::config' do |facts|
       .with_content(/^28,58  \*  \*  \*  \*  pcp  \/usr\/libexec\/pcp\/bin\/pmie_check -C$/)
   end
 
-  context 'when include_default_pmlogger => true' do
-    let(:params) {{ :include_default_pmlogger => true }}
-    it do
-      is_expected.to contain_pcp__pmlogger('local').with({
-        :primary  => 'true',
-        :args     => '-r -T24h10m -c config.default',
-      })
-    end
+  context 'when include_default_pmlogger => false' do
+    let(:params) {{ :include_default_pmlogger => false }}
+    it { is_expected.not_to contain_pcp__pmlogger('local') }
   end
 
-  context 'when include_default_pmie => true' do
-    let(:params) {{ :include_default_pmie => true }}
-    it do
-      is_expected.to contain_pcp__pmie('local').with({
-        :args => '-c config.default',
-      })
-    end
+  context 'when include_default_pmie => false' do
+    let(:params) {{ :include_default_pmie => false }}
+    it { is_expected.not_to contain_pcp__pmie('local') }
   end
 
 end
