@@ -32,4 +32,20 @@ class pcp::config {
     }
   }
 
+  file { '/etc/cron.d/pcp-pmlogger':
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('pcp/pcp-pmlogger.cron.erb'),
+  }
+
+  file { '/etc/cron.d/pcp-pmie':
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('pcp/pcp-pmie.cron.erb'),
+  }
+
 }

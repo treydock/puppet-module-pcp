@@ -20,6 +20,7 @@ class pcp (
   # Config
   $include_default_pmlogger = false,
   $include_default_pmie     = false,
+  $pmlogger_daily_args      = '-X xz -x 3',
 
   # Resources
   $pmdas                    = {},
@@ -31,6 +32,10 @@ class pcp (
     $manage_user,
     $include_default_pmlogger,
     $include_default_pmie
+  )
+
+  validate_string(
+    $pmlogger_daily_args
   )
 
   validate_array(
