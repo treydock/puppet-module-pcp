@@ -12,6 +12,8 @@ define pcp::pmie (
 
   include pcp
 
+  Package['pcp'] -> Pcp::Pmie[$title]
+
   if $socks {
     $_socks = 'y'
   } else {

@@ -13,6 +13,8 @@ define pcp::pmlogger (
 
   include pcp
 
+  Package['pcp'] -> Pcp::Pmlogger[$title]
+
   validate_bool(
     $primary,
     $socks

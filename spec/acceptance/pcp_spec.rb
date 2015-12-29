@@ -5,12 +5,6 @@ describe 'pcp class:' do
     it 'should run successfully' do
       pp = "
         class { 'pcp': }
-        pcp::pmlogger { 'local':
-          args => '-r -T24h10m -c config.default'
-        }
-        pcp::pmie { 'local':
-          args => '-c config.default',
-        }
       "
 
       apply_manifest(pp, :catch_failures => true)

@@ -16,19 +16,22 @@ define pcp::pmda (
   )
 
   $_package_name = pick($package_name, "pcp-pmda-${name}")
-  $_config_path  = "/var/lib/pcp/config/${config_dir_name}/${name}.conf"
+  $_config_dir   = "/var/lib/pcp/config/${config_dir_name}"
+  $_config_path  = "${_config_dir}/${name}.conf"
   $_pmda_dir     = "/var/lib/pcp/pmdas/${name}"
 
   case $ensure {
     'present': {
-      $_package_require = Class['pcp::repo']
-      $_package_notify  = Exec["install-${name}"]
-      $_config_before   = Exec["install-${name}"]
+      $_package_require   = Class['pcp::repo']
+      $_package_notify    = Exec["install-${name}"]
+      $_config_dir_ensure = 'directory'
+      $_config_before     = Exec["install-${name}"]
     }
     'absent': {
-      $_package_require = Exec["remove-${name}"]
-      $_package_notify  = undef
-      $_config_before   = Exec["remove-${name}"]
+      $_package_require   = Exec["remove-${name}"]
+      $_package_notify    = undef
+      $_config_dir_ensure = 'absent'
+      $_config_before     = Exec["remove-${name}"]
     }
     default: {
       fail("pcp::pmda: ensure must be present or absent, ${ensure} given.")
@@ -49,6 +52,15 @@ define pcp::pmda (
   }
 
   if $config_content or $config_source {
+    file { "pmda-config-dir-${name}":
+      ensure  => $_config_dir_ensure,
+      path    => $_config_dir,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => $_config_require,
+      before  => File["pmda-config-${name}"],
+    }
     file { "pmda-config-${name}":
       ensure  => $ensure,
       path    => $_config_path,
@@ -57,7 +69,6 @@ define pcp::pmda (
       mode    => '0644',
       content => $config_content,
       source  => $config_source,
-      require => $_config_require,
       before  => $_config_before,
       notify  => Service['pmcd'],
     }

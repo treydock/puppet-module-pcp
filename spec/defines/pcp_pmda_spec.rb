@@ -69,6 +69,18 @@ describe 'pcp::pmda' do
         let(:params) {{ :config_content => 'some content' }}
 
         it do
+          is_expected.to contain_file('pmda-config-dir-test').with({
+            :ensure   => 'directory',
+            :path     => '/var/lib/pcp/config/test',
+            :owner    => 'root',
+            :group    => 'root',
+            :mode     => '0644',
+            :require  => nil,
+            :before   => 'File[pmda-config-test]',
+          })
+        end
+
+        it do
           is_expected.to contain_file('pmda-config-test').with({
             :ensure   => 'present',
             :path     => '/var/lib/pcp/config/test/test.conf',
@@ -77,10 +89,15 @@ describe 'pcp::pmda' do
             :mode     => '0644',
             :content  => 'some content',
             :source   => nil,
-            :require  => nil,
             :before   => 'Exec[install-test]',
             :notify   => 'Service[pmcd]',
           })
+        end
+
+        context 'when has_package => true' do
+          let(:params) {{ :config_content => 'some content', :has_package => true }}
+
+          it { is_expected.to contain_file('pmda-config-dir-test').that_requires('Package[pcp-pmda-test]') }
         end
       end
 
