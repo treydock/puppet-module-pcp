@@ -13,7 +13,7 @@ define pcp::pmlogger (
 
   include pcp
 
-  Package['pcp'] -> Pcp::Pmlogger[$title]
+  Class['pcp::install'] -> Pcp::Pmlogger[$title]
 
   validate_bool(
     $primary,

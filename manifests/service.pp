@@ -10,22 +10,22 @@ class pcp::service {
   }
 
   service { 'pmcd':
-    ensure     => 'running',
-    enable     => true,
+    ensure     => $pcp::_service_ensure,
+    enable     => $pcp::_service_enable,
     hasstatus  => true,
     hasrestart => true,
   }
 
   service { 'pmlogger':
-    ensure     => 'running',
-    enable     => true,
+    ensure     => $pcp::_service_ensure,
+    enable     => $pcp::_service_enable,
     hasstatus  => true,
     hasrestart => true,
   }
 
   service { 'pmie':
-    ensure     => 'running',
-    enable     => true,
+    ensure     => $pcp::_service_ensure,
+    enable     => $pcp::_service_enable,
     hasstatus  => true,
     hasrestart => true,
   }

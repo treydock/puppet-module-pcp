@@ -12,7 +12,7 @@ define pcp::pmie (
 
   include pcp
 
-  Package['pcp'] -> Pcp::Pmie[$title]
+  Class['pcp::install'] -> Pcp::Pmie[$title]
 
   if $socks {
     $_socks = 'y'
