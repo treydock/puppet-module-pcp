@@ -8,6 +8,8 @@ describe 'pcp class:' do
       EOS
 
       apply_manifest(pp, :catch_failures => true)
+      # sometimes pmlogger takes a bit of time to start
+      sleep(10)
       apply_manifest(pp, :catch_changes => true)
     end
 
