@@ -87,7 +87,11 @@ define pcp::pmda (
         path    => "${_pmda_dir}:/usr/bin:/bin:/usr/sbin:/sbin",
         cwd     => $_pmda_dir,
         command => 'Remove',
-        onlyif  => "/usr/bin/pminfo ${name}",
+        onlyif  => [
+          "test -f ${_pmda_dir}/Remove",
+          "/usr/bin/pminfo ${name}",
+        ],
+        require => Class['pcp::install'],
       }
     }
     default: {

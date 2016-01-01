@@ -80,7 +80,8 @@ describe 'pcp::pmda' do
             :path     => '/var/lib/pcp/pmdas/test:/usr/bin:/bin:/usr/sbin:/sbin',
             :cwd      => '/var/lib/pcp/pmdas/test',
             :command  => 'Remove',
-            :onlyif   => '/usr/bin/pminfo test',
+            :onlyif   => ['test -f /var/lib/pcp/pmdas/test/Remove', '/usr/bin/pminfo test'],
+            :require  => 'Class[Pcp::Install]',
           })
         end
 
