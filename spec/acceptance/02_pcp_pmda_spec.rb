@@ -5,8 +5,7 @@ describe 'pcp::pmda define:' do
     it 'should run successfully' do
       pp =<<-EOS
         pcp::pmda { 'rsyslog':
-          ensure      => 'present',
-          has_package => true,
+          ensure => 'present',
         }
       EOS
 
@@ -29,8 +28,7 @@ describe 'pcp::pmda define:' do
     it 'should run successfully' do
       pp =<<-EOS
         pcp::pmda { 'rsyslog':
-          ensure      => 'absent',
-          has_package => true,
+          ensure => 'absent',
         }
       EOS
 
@@ -53,7 +51,6 @@ describe 'pcp::pmda define:' do
       pp =<<-EOS
         pcp::pmda { 'rsyslog':
           ensure          => 'absent',
-          has_package     => true,
           remove_package  => true,
         }
       EOS
@@ -72,13 +69,12 @@ describe 'pcp::pmda define:' do
     it 'should run successfully' do
       pp =<<-EOS
         pcp::pmda { 'nfsclient':
-          ensure      => 'present',
-          has_package => true,
+          ensure => 'present',
         }
       EOS
 
       apply_manifest(pp, :catch_failures => true)
-      sleep(10)
+      sleep(15)
       apply_manifest(pp, :catch_changes => true)
     end
 
@@ -95,8 +91,7 @@ describe 'pcp::pmda define:' do
     it 'should run successfully' do
       pp =<<-EOS
         pcp::pmda { 'nfsclient':
-          ensure      => 'absent',
-          has_package => true,
+          ensure => 'absent',
         }
       EOS
 
