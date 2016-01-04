@@ -55,9 +55,10 @@ define pcp::pmda (
       }
 
       exec { "install-${name}":
-        command => "/bin/touch ${_pmda_dir}/.NeedInstall",
+        path    => '/usr/bin:/bin:/usr/sbin:/sbin',
+        command => "touch ${_pmda_dir}/.NeedInstall",
         creates => "${_pmda_dir}/.NeedInstall",
-        unless  => "/usr/bin/pminfo ${name}",
+        unless  => "egrep -q '^${name}\\s+' /etc/pcp/pmcd/pmcd.conf",
         notify  => Service['pmcd'],
       }
     }
@@ -84,14 +85,11 @@ define pcp::pmda (
       }
 
       exec { "remove-${name}":
-        path    => "${_pmda_dir}:/usr/bin:/bin:/usr/sbin:/sbin",
-        cwd     => $_pmda_dir,
-        command => 'Remove',
-        onlyif  => [
-          "test -f ${_pmda_dir}/Remove",
-          "/usr/bin/pminfo ${name}",
-        ],
-        require => Class['pcp::install'],
+        path    => '/usr/bin:/bin:/usr/sbin:/sbin',
+        command => "touch ${_pmda_dir}/.NeedRemove",
+        creates => "${_pmda_dir}/.NeedRemove",
+        onlyif  => "egrep -q '^${name}\\s+' /etc/pcp/pmcd/pmcd.conf",
+        notify  => Service['pmcd'],
       }
     }
     default: {

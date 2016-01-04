@@ -24,9 +24,10 @@ describe 'pcp::pmda' do
 
       it do
         is_expected.to contain_exec('install-test').with({
-          :command  => '/bin/touch /var/lib/pcp/pmdas/test/.NeedInstall',
+          :path     => '/usr/bin:/bin:/usr/sbin:/sbin',
+          :command  => 'touch /var/lib/pcp/pmdas/test/.NeedInstall',
           :creates  => '/var/lib/pcp/pmdas/test/.NeedInstall',
-          :unless   => '/usr/bin/pminfo test',
+          :unless   => 'egrep -q \'^test\s+\' /etc/pcp/pmcd/pmcd.conf',
           :notify   => 'Service[pmcd]',
         })
       end
@@ -77,11 +78,11 @@ describe 'pcp::pmda' do
 
         it do
           is_expected.to contain_exec('remove-test').with({
-            :path     => '/var/lib/pcp/pmdas/test:/usr/bin:/bin:/usr/sbin:/sbin',
-            :cwd      => '/var/lib/pcp/pmdas/test',
-            :command  => 'Remove',
-            :onlyif   => ['test -f /var/lib/pcp/pmdas/test/Remove', '/usr/bin/pminfo test'],
-            :require  => 'Class[Pcp::Install]',
+            :path     => '/usr/bin:/bin:/usr/sbin:/sbin',
+            :command  => 'touch /var/lib/pcp/pmdas/test/.NeedRemove',
+            :creates  => '/var/lib/pcp/pmdas/test/.NeedRemove',
+            :onlyif   => 'egrep -q \'^test\s+\' /etc/pcp/pmcd/pmcd.conf',
+            :notify   => 'Service[pmcd]',
           })
         end
 
