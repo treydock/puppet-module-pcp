@@ -38,7 +38,7 @@ define pcp::pmda (
           path    => $_config_dir,
           owner   => 'root',
           group   => 'root',
-          mode    => '0644',
+          mode    => '0755',
           require => Class['pcp::install'],
         }->
         file { "pmda-config-${name}":

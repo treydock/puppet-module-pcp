@@ -49,7 +49,7 @@ describe 'pcp::pmda' do
             :path     => '/var/lib/pcp/config/test',
             :owner    => 'root',
             :group    => 'root',
-            :mode     => '0644',
+            :mode     => '0755',
             :require  => 'Class[Pcp::Install]',
           })
         end
@@ -99,6 +99,22 @@ describe 'pcp::pmda' do
               })
           end
         end
+      end
+
+      context 'hotproc pmda' do
+        let(:title) { 'proc' }
+        let(:params) {{
+          :has_package    => false,
+          :config_path    => '/var/lib/pcp/pmdas/proc/hotproc.conf',
+          :config_content => '( (uname != "root") ) || cpuburn > 0.1'
+        }}
+
+        it { is_expected.to compile.with_all_deps }
+
+        it { is_expected.not_to contain_package('pcp-pmda-proc') }
+        it { is_expected.to contain_file('pmda-config-dir-proc') }
+        it { is_expected.to contain_file('pmda-config-proc') }
+        it { is_expected.to contain_exec('install-proc') }
       end
 
     end
