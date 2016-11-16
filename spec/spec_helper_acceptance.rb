@@ -1,11 +1,15 @@
-require 'beaker-rspec/spec_helper'
-require 'beaker-rspec/helpers/serverspec'
+require 'beaker-rspec'
+require 'beaker_spec_helper'
+include BeakerSpecHelper
+
+dir = File.expand_path(File.dirname(__FILE__))
+Dir["#{dir}/acceptance/shared_examples/**/*.rb"].sort.each {|f| require f}
 
 install_puppet_on(hosts, {:version => '3.8.3'})
 
 RSpec.configure do |c|
-  # Project root
-  proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+  module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+  module_name = module_root.split('-').last
 
   # Readable test descriptions
   c.formatter = :documentation
@@ -13,10 +17,10 @@ RSpec.configure do |c|
   # Configure all nodes in nodeset
   c.before :suite do
     # Install module and dependencies
-    puppet_module_install(:source => proj_root, :module_name => 'pcp')
+    puppet_module_install(:source => module_root, :module_name => module_name)
 
     hosts.each do |host|
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
+      BeakerSpecHelper::spec_prep(host)
     end
   end
 end
