@@ -1,13 +1,13 @@
 # Define: pcp::pmie: See README.md for documentation
 define pcp::pmie (
-  $ensure         = 'present',
-  $hostname       = 'LOCALHOSTNAME',
-  $socks          = false,
-  $log_file       = 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
-  $args           = '',
-  $config_path    = undef,
-  $config_content = undef,
-  $config_source  = undef,
+  Enum['present', 'absent'] $ensure             = 'present',
+  String $hostname                              = 'LOCALHOSTNAME',
+  Boolean $socks                                = false,
+  String $log_file                              = 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
+  String $args                                  = '',
+  Optional[Stdlib::Absolutepath] $config_path   = undef,
+  Optional[String] $config_content              = undef,
+  Optional[String] $config_source               = undef,
 ) {
 
   include pcp

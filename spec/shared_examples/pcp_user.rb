@@ -25,12 +25,12 @@ shared_examples_for 'pcp::user' do |facts|
   end
 
   context 'when pcp_group_gid defined' do
-    let(:params) {{ :pcp_group_gid => '99' }}
+    let(:params) {{ :pcp_group_gid => 99 }}
     it { is_expected.to contain_group('pcp').with_gid('99') }
   end
 
   context 'when pcp_user_uid defined' do
-    let(:params) {{ :pcp_user_uid => '99' }}
+    let(:params) {{ :pcp_user_uid => 99 }}
     it { is_expected.to contain_user('pcp').with_uid('99') }
   end
 
