@@ -266,11 +266,11 @@ The pmlogger config source.  Default is `undef`.
 
 ## Compatibility
 
-This module only works with PCP >= 3.10.7 which is when control.d config directories were added.
+This module only works with PCP >= 3.11.3
 
 Tested using
 
-* CentOS 6.7
+* CentOS 6
 * CentOS 7
 
 ## Development
