@@ -1,24 +1,19 @@
 # Define: pcp::pmlogger: See README.md for documentation
 define pcp::pmlogger (
-  $ensure         = 'present',
-  $hostname       = 'LOCALHOSTNAME',
-  $primary        = false,
-  $socks          = false,
-  $log_dir        = 'PCP_LOG_DIR/pmlogger/LOCALHOSTNAME',
-  $args           = '',
-  $config_path    = undef,
-  $config_content = undef,
-  $config_source  = undef,
+  Enum['present', 'absent'] $ensure             = 'present',
+  String $hostname                              = 'LOCALHOSTNAME',
+  Boolean $primary                              = false,
+  Boolean $socks                                = false,
+  String $log_dir                               = 'PCP_LOG_DIR/pmlogger/LOCALHOSTNAME',
+  String $args                                  = '',
+  Optional[Stdlib::Absolutepath] $config_path   = undef,
+  Optional[String] $config_content              = undef,
+  Optional[String] $config_source               = undef,
 ) {
 
   include pcp
 
   Class['pcp::install'] -> Pcp::Pmlogger[$title]
-
-  validate_bool(
-    $primary,
-    $socks
-  )
 
   if $primary {
     $_primary = 'y'

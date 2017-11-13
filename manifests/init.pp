@@ -1,46 +1,26 @@
 # Class: pcp: See README.md for documentation
 class pcp (
-  $ensure                   = 'running',
+  Enum['running', 'stopped', 'absent'] $ensure  = 'running',
   # Repo
-  $manage_repo              = true,
-  $repo_baseurl             = $pcp::params::repo_baseurl,
+  Boolean $manage_repo                          = true,
+  String $repo_baseurl                          = $pcp::params::repo_baseurl,
   # Package
-  $package_ensure           = 'present',
-  $package_name             = 'pcp',
-  $extra_packages           = [],
+  String $package_ensure                        = 'present',
+  String $package_name                          = 'pcp',
+  Array $extra_packages                         = [],
   # Service
-  $enable_pmproxy           = false,
+  Boolean $enable_pmproxy                       = false,
   # User
-  $manage_user              = true,
-  $pcp_group_gid            = undef,
-  $pcp_user_uid             = undef,
+  Boolean $manage_user                          = true,
+  Optional[Integer] $pcp_group_gid              = undef,
+  Optional[Integer] $pcp_user_uid               = undef,
   # Config
-  $include_default_pmlogger = true,
-  $include_default_pmie     = true,
-  $pmlogger_daily_args      = '-X xz -x 3',
+  Boolean $include_default_pmlogger             = true,
+  Boolean $include_default_pmie                 = true,
+  String $pmlogger_daily_args                   = '-X xz -x 3',
   # Resources
-  $pmdas                    = {},
+  Hash $pmdas                                   = {},
 ) inherits pcp::params {
-
-  validate_bool(
-    $manage_repo,
-    $enable_pmproxy,
-    $manage_user,
-    $include_default_pmlogger,
-    $include_default_pmie
-  )
-
-  validate_string(
-    $pmlogger_daily_args
-  )
-
-  validate_array(
-    $extra_packages
-  )
-
-  validate_hash(
-    $pmdas
-  )
 
   case $ensure {
     'running': {
@@ -82,13 +62,13 @@ class pcp (
   include pcp::resources
   include pcp::service
 
-  Anchor['pcp::start']->
-  Class['pcp::repo']->
-  Class['pcp::user']->
-  Class['pcp::install']->
-  Class['pcp::config']->
-  Class['pcp::resources']->
-  Class['pcp::service']->
-  Anchor['pcp::end']
+  Anchor['pcp::start']
+  -> Class['pcp::repo']
+  -> Class['pcp::user']
+  -> Class['pcp::install']
+  -> Class['pcp::config']
+  -> Class['pcp::resources']
+  -> Class['pcp::service']
+  -> Anchor['pcp::end']
 
 }

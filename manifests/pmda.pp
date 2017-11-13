@@ -1,20 +1,15 @@
 # Define: pcp::pmda: See README.md for documentation
 define pcp::pmda (
-  $ensure           = 'present',
-  $has_package      = true,
-  $package_name     = undef,
-  $remove_package   = false,
-  $config_path      = undef,
-  $config_content   = undef,
-  $config_source    = undef,
+  Enum['present', 'absent'] $ensure           = 'present',
+  Boolean $has_package                        = true,
+  Optional[String] $package_name              = undef,
+  Boolean $remove_package                     = false,
+  Optional[Stdlib::Absolutepath] $config_path = undef,
+  Optional[String] $config_content            = undef,
+  Optional[String] $config_source             = undef,
 ) {
 
   include pcp
-
-  validate_bool(
-    $has_package,
-    $remove_package
-  )
 
   $_package_name = pick($package_name, "pcp-pmda-${name}")
   $_config_path  = pick($config_path, "/var/lib/pcp/config/${name}/${name}.conf")
@@ -40,8 +35,8 @@ define pcp::pmda (
           group   => 'root',
           mode    => '0755',
           require => Class['pcp::install'],
-        }->
-        file { "pmda-config-${name}":
+        }
+        -> file { "pmda-config-${name}":
           ensure  => 'file',
           path    => $_config_path,
           owner   => 'root',
@@ -77,8 +72,8 @@ define pcp::pmda (
         file { "pmda-config-${name}":
           ensure => 'absent',
           path   => $_config_path,
-        }->
-        file { "pmda-config-dir-${name}":
+        }
+        -> file { "pmda-config-dir-${name}":
           ensure => 'absent',
           path   => $_config_dir,
         }
