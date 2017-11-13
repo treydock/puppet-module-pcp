@@ -15,7 +15,7 @@
 
 This module manages Performance Co-Pilot (PCP)
 
-**Only PCP >= 3.10.7 is supported**
+**Only PCP >= 3.11.3 is supported**
 
 ## Usage
 
@@ -191,6 +191,10 @@ The pmie ensure property.  Valid values are `present` and `absent`.  Default is 
 ##### `hostname`
 
 Hostname associated with the pmie.  Default is `'LOCALHOSTNAME'`
+
+##### `primary`
+
+Boolean that sets if this pmie is primary.  Default is `false`.
 
 ##### `socks`
 

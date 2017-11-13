@@ -9,7 +9,7 @@ describe 'pcp::pmie' do
       
       let(:pre_condition) { "class { 'pcp': include_default_pmie => false }" }
       let(:title) { 'local' }
-      let(:params) {{ :args => '-c config.default' }}
+      let(:params) {{ :primary => true, :args => '-c config.default' }}
 
       it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_pcp__pmie('local') }
@@ -21,7 +21,7 @@ describe 'pcp::pmie' do
           :owner    => 'root',
           :group    => 'root',
           :mode     => '0644',
-          :content  => "#This file is managed by Puppet\nLOCALHOSTNAME n PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log -c config.default\n",
+          :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log -c config.default\n",
           :notify   => 'Service[pmie]',
         })
       end
@@ -33,6 +33,7 @@ describe 'pcp::pmie' do
         let(:params) {{
           :ensure         => 'present',
           :hostname       => 'LOCALHOSTNAME',
+          :primary        => true,
           :socks          => false,
           :log_file       => 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
           :config_path    => '/etc/pcp/pmie/pmie-supremm.config',
@@ -48,7 +49,7 @@ describe 'pcp::pmie' do
             :owner    => 'root',
             :group    => 'root',
             :mode     => '0644',
-            :content  => "#This file is managed by Puppet\nLOCALHOSTNAME n PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log  -c /etc/pcp/pmie/pmie-supremm.config\n",
+            :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log  -c /etc/pcp/pmie/pmie-supremm.config\n",
             :notify   => 'Service[pmie]',
           })
         end
