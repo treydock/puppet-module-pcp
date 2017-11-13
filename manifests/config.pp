@@ -31,8 +31,9 @@ class pcp::config {
 
   if $pcp::include_default_pmie {
     pcp::pmie { 'local':
-      ensure => $pcp::_resource_ensure,
-      args   => '-c config.default',
+      ensure  => $pcp::_resource_ensure,
+      primary => true,
+      args    => '-c config.default',
     }
   }
 

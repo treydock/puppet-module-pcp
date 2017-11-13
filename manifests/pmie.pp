@@ -2,6 +2,7 @@
 define pcp::pmie (
   Enum['present', 'absent'] $ensure             = 'present',
   String $hostname                              = 'LOCALHOSTNAME',
+  Boolean $primary                              = false,
   Boolean $socks                                = false,
   String $log_file                              = 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
   String $args                                  = '',
@@ -13,6 +14,12 @@ define pcp::pmie (
   include pcp
 
   Class['pcp::install'] -> Pcp::Pmie[$title]
+
+  if $primary {
+    $_primary = 'y'
+  } else {
+    $_primary = 'n'
+  }
 
   if $socks {
     $_socks = 'y'
@@ -27,7 +34,7 @@ define pcp::pmie (
   }
 
   $_pmie_config_path = "/etc/pcp/pmie/control.d/${name}"
-  $_line = "#This file is managed by Puppet\n${hostname} ${_socks} ${log_file} ${_args}\n"
+  $_line = "#This file is managed by Puppet\n${hostname} ${_primary} ${_socks} ${log_file} ${_args}\n"
 
   file { "pmie-${name}":
     ensure  => $ensure,
