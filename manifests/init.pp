@@ -15,6 +15,9 @@ class pcp (
   Optional[Integer] $pcp_group_gid              = undef,
   Optional[Integer] $pcp_user_uid               = undef,
   # Config
+  Optional[String] $cron_ensure                 = undef,
+  String $pmlogger_cron_template                = 'pcp/pcp-pmlogger.cron.erb',
+  String $pmie_cron_template                    = 'pcp/pcp-pmie.cron.erb',
   Boolean $include_default_pmlogger             = true,
   Boolean $include_default_pmie                 = true,
   String $pmlogger_daily_args                   = '-X xz -x 3',
@@ -27,7 +30,7 @@ class pcp (
       $_package_ensure    = $package_ensure
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
-      $_cron_file_ensure  = 'file'
+      $_cron_default      = 'file'
       $_service_ensure    = 'running'
       $_service_enable    = true
     }
@@ -35,7 +38,7 @@ class pcp (
       $_package_ensure    = $package_ensure
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
-      $_cron_file_ensure  = 'absent'
+      $_cron_default      = 'absent'
       $_service_ensure    = 'stopped'
       $_service_enable    = false
     }
@@ -43,7 +46,7 @@ class pcp (
       $_package_ensure    = 'absent'
       $_directory_ensure  = 'absent'
       $_resource_ensure   = 'absent'
-      $_cron_file_ensure  = 'absent'
+      $_cron_default      = 'absent'
       $_service_ensure    = 'stopped'
       $_service_enable    = false
     }
@@ -51,6 +54,8 @@ class pcp (
       fail("Module ${module_name}: ensure must be either running, stopped or absent.  ${ensure} given.")
     }
   }
+
+  $_cron_file_ensure = pick($cron_ensure, $_cron_default)
 
   anchor { 'pcp::start': }
   anchor { 'pcp::end': }

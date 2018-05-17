@@ -42,7 +42,7 @@ class pcp::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('pcp/pcp-pmlogger.cron.erb'),
+    content => template($pcp::pmlogger_cron_template),
   }
 
   file { '/etc/cron.d/pcp-pmie':
@@ -50,7 +50,7 @@ class pcp::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('pcp/pcp-pmie.cron.erb'),
+    content => template($pcp::pmie_cron_template),
   }
 
 }
