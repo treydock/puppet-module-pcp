@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/treydock/puppet-module-pcp/tree/1.1.1) (2018-05-17)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.1.0...1.1.1)
+
+**Merged pull requests:**
+
+- Update README [\#4](https://github.com/treydock/puppet-module-pcp/pull/4) ([treydock](https://github.com/treydock))
+
 ## [1.1.0](https://github.com/treydock/puppet-module-pcp/tree/1.1.0) (2018-05-17)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.0.0...1.1.0)
 
