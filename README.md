@@ -85,6 +85,9 @@ Install and enable a PMDA
     pcp::manage_user: true
     #pcp::pcp_group_gid: undef
     #pcp::pcp_user_uid: undef
+    #pcp::cron_ensure: undef
+    pcp::pmlogger_cron_template: 'pcp/pcp-pmlogger.cron.erb'
+    pcp::pmie_cron_template: 'pcp/pcp-pmie.cron.erb'
     pcp::include_default_pmlogger: true
     pcp::include_default_pmie: true
     pcp::pmlogger_daily_args: '-X xz -x 3'
@@ -129,6 +132,18 @@ pcp group GID.  Default is `undef`
 ##### `pcp_user_uid`
 
 pcp user UID.  Default is `undef`
+
+##### `cron_ensure`
+
+Ensure passed to cron files. Default based on value of `ensure`
+
+##### `pmlogger_cron_template`
+
+Template used for pmlogger cron. Default is `pcp/pcp-pmlogger.cron.erb`
+
+##### `pmie_cron_template`
+
+Template used for pmie cron. Default is `pcp/pcp-pmie.cron.erb`
 
 ##### `include_default_pmlogger`
 
