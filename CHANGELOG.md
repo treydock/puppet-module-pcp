@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/treydock/puppet-module-pcp/tree/1.2.0) (2018-05-18)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.1.1...1.2.0)
+
+**Implemented enhancements:**
+
+- Add service\_ensure and service\_enable parameters. [\#5](https://github.com/treydock/puppet-module-pcp/pull/5) ([treydock](https://github.com/treydock))
+
 ## [1.1.1](https://github.com/treydock/puppet-module-pcp/tree/1.1.1) (2018-05-17)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.1.0...1.1.1)
 
