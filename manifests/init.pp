@@ -9,6 +9,8 @@ class pcp (
   String $package_name                          = 'pcp',
   Array $extra_packages                         = [],
   # Service
+  Optional[String] $service_ensure              = undef,
+  Optional[Boolean] $service_enable             = undef,
   Boolean $enable_pmproxy                       = false,
   # User
   Boolean $manage_user                          = true,
@@ -31,24 +33,24 @@ class pcp (
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
       $_cron_default      = 'file'
-      $_service_ensure    = 'running'
-      $_service_enable    = true
+      $_service_ensure_default  = 'running'
+      $_service_enable_default  = true
     }
     'stopped': {
       $_package_ensure    = $package_ensure
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
       $_cron_default      = 'absent'
-      $_service_ensure    = 'stopped'
-      $_service_enable    = false
+      $_service_ensure_default  = 'stopped'
+      $_service_enable_default  = false
     }
     'absent': {
       $_package_ensure    = 'absent'
       $_directory_ensure  = 'absent'
       $_resource_ensure   = 'absent'
       $_cron_default      = 'absent'
-      $_service_ensure    = 'stopped'
-      $_service_enable    = false
+      $_service_ensure_default  = 'stopped'
+      $_service_enable_default  = false
     }
     default: {
       fail("Module ${module_name}: ensure must be either running, stopped or absent.  ${ensure} given.")
@@ -56,6 +58,8 @@ class pcp (
   }
 
   $_cron_file_ensure = pick($cron_ensure, $_cron_default)
+  $_service_ensure = pick($service_ensure, $_service_ensure_default)
+  $_service_enable = pick($service_enable, $_service_enable_default)
 
   anchor { 'pcp::start': }
   anchor { 'pcp::end': }

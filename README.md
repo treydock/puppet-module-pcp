@@ -81,6 +81,8 @@ Install and enable a PMDA
     pcp::package_ensure: 'present'
     pcp::package_name: 'pcp'
     pcp::extra_packages: []
+    #pcp::service_ensure: undef
+    #pcp::service_enable: undef
     pcp::enable_pmproxy: false
     pcp::manage_user: true
     #pcp::pcp_group_gid: undef
@@ -116,6 +118,14 @@ Name of PCP package
 ##### `extra_packages`
 
 Array of extra packages to install for PCP
+
+##### `service_ensure`
+
+Set service ensure property for `pmcd`, `pmie` and `pmlogger` services.  Default is based on `ensure` parameter.
+
+##### `service_enable`
+
+Set service enable property for `pmcd`, `pmie` and `pmlogger` services.  Default is based on `ensure` parameter.
 
 ##### `enable_pmproxy`
 
