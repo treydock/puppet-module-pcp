@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/treydock/puppet-module-pcp/tree/1.3.0) (2018-05-24)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.2.0...1.3.0)
+
+**Implemented enhancements:**
+
+- Quote pmlogger log directory path [\#6](https://github.com/treydock/puppet-module-pcp/pull/6) ([treydock](https://github.com/treydock))
+
 ## [1.2.0](https://github.com/treydock/puppet-module-pcp/tree/1.2.0) (2018-05-18)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.1.1...1.2.0)
 
