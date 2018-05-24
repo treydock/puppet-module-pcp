@@ -21,7 +21,7 @@ describe 'pcp::pmlogger' do
           :owner    => 'root',
           :group    => 'root',
           :mode     => '0644',
-          :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n PCP_LOG_DIR/pmlogger/LOCALHOSTNAME -r -T24h10m -c config.default\n",
+          :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n \"PCP_LOG_DIR/pmlogger/LOCALHOSTNAME\" -r -T24h10m -c config.default\n",
           :notify   => 'Service[pmlogger]',
         })
       end
@@ -50,7 +50,7 @@ describe 'pcp::pmlogger' do
             :owner    => 'root',
             :group    => 'root',
             :mode     => '0644',
-            :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n /dne/supremm/LOCALHOSTNAME -r -c /etc/pcp/pmlogger/pmlogger-supremm.config\n",
+            :content  => "#This file is managed by Puppet\nLOCALHOSTNAME y n \"/dne/supremm/LOCALHOSTNAME\" -r -c /etc/pcp/pmlogger/pmlogger-supremm.config\n",
             :notify   => 'Service[pmlogger]',
           })
         end
