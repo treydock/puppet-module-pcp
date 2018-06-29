@@ -7,6 +7,7 @@ shared_examples_for 'pcp::service' do |facts|
       :hasrestart => 'true',
     })
   end
+  it { is_expected.to contain_service('pmcd').that_comes_before('Service[pmlogger]') }
 
   it do
     is_expected.to contain_service('pmlogger').with({
@@ -16,6 +17,7 @@ shared_examples_for 'pcp::service' do |facts|
       :hasrestart => 'true',
     })
   end
+  it { is_expected.to contain_service('pmlogger').that_comes_before('Service[pmie]') }
 
   it do
     is_expected.to contain_service('pmie').with({
