@@ -15,15 +15,13 @@ class pcp::service {
     hasstatus  => true,
     hasrestart => true,
   }
-
-  service { 'pmlogger':
+  -> service { 'pmlogger':
     ensure     => $pcp::_service_ensure,
     enable     => $pcp::_service_enable,
     hasstatus  => true,
     hasrestart => true,
   }
-
-  service { 'pmie':
+  -> service { 'pmie':
     ensure     => $pcp::_service_ensure,
     enable     => $pcp::_service_enable,
     hasstatus  => true,
