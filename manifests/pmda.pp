@@ -1,4 +1,34 @@
-# Define: pcp::pmda: See README.md for documentation
+# @summary
+#   Install, enable and optionally configure a PMDA
+#
+# @example
+#   pcp::pmda { 'nfsclient':
+#     ensure => 'present',
+#   }
+#
+# @param ensure
+#   Ensure property for the PMDA.
+#   Valid values are `'present'` and `'absent'`.
+#   Default is `'present'`.
+# @param has_package
+#   Boolean that determines of a package is associated with the PMDA.
+#   Default is `true`.
+# @param package_name
+#   Package name of PMDA.
+#   Default is `pcp-pmda-$name`.
+# @param remove_package
+#   Boolean that determines if the package should be removed when `ensure` is `absent`.
+#   Default is `false`.
+# @param config_path
+#   Configuration file path for this PMDA.
+#   Default is `/var/lib/pcp/config/${name}/${name}.conf`.
+# @param config_content
+#   Configuration file content for the PMDA.
+#   Default is `undef`.
+# @param config_source
+#   Configuration file source for the PMDA.
+#   Default is `undef`.
+#
 define pcp::pmda (
   Enum['present', 'absent'] $ensure           = 'present',
   Boolean $has_package                        = true,

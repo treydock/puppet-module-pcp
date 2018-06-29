@@ -1,4 +1,4 @@
-# Private class: See README.md.
+# @api private
 class pcp::install {
 
   if $pcp::_package_ensure != 'absent' {

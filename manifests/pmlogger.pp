@@ -1,4 +1,36 @@
-# Define: pcp::pmlogger: See README.md for documentation
+# @summary
+#   Configure a pmlogger
+#
+# @param ensure
+#   The pmlogger ensure property.
+#   Valid values are `present` and `absent`.
+#   Default is `present`.
+# @param hostname
+#   Hostname associated with the pmlogger.
+#   Default is `'LOCALHOSTNAME'`.
+# @param primary
+#   Boolean that sets if this pmlogger is primary.
+#   Default is `false`.
+# @param socks
+#   Boolean that sets if this pmlogger uses pmsocks.
+#   Default is `false`.
+# @param log_dir
+#   Log directory for this pmlogger.
+#   Default is `PCP_LOG_DIR/pmlogger/LOCALHOSTNAME`.
+# @param args
+#   Arguments passed to pmlogger.
+#   Default is an empty string.
+# @param config_path
+#   Config path for the pmlogger.
+#   If defined the value is passed as `-c value` to the pmlogger arguments.
+#   Default is `undef`.
+# @param config_content
+#   The pmlogger config contents.
+#   Default is `undef`.
+# @param config_source
+#   The pmlogger config source.
+#   Default is `undef`.
+#
 define pcp::pmlogger (
   Enum['present', 'absent'] $ensure             = 'present',
   String $hostname                              = 'LOCALHOSTNAME',

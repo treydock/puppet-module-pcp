@@ -1,4 +1,4 @@
-# Private class: See README.md.
+# @api private
 class pcp::resources {
 
   create_resources('pcp::pmda', $pcp::pmdas)

@@ -1,6 +1,7 @@
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
+require 'puppet-strings/tasks'
 
 task :default do
   sh %{rake -T}
@@ -11,6 +12,11 @@ task :test => [:syntax, :lint, :spec]
 
 desc "Run syntax, lint and spec_standalone tasks."
 task :test_standalone => [:spec_prep, :syntax, :lint, :spec_standalone]
+
+desc 'Generate REFERENCE.md'
+task :reference do
+  sh 'puppet strings generate --format markdown'
+end
 
 exclude_paths = [
   "pkg/**/*",
