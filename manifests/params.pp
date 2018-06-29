@@ -1,4 +1,4 @@
-# Private class: See README.md.
+# @api private
 class pcp::params {
 
   case $::osfamily {

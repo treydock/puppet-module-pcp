@@ -1,4 +1,30 @@
-# Define: pcp::pmie: See README.md for documentation
+# @summary
+#   Configure a pmie
+#
+# @param ensure
+#   The pmie ensure property.
+#   Valid values are `present` and `absent`.
+#   Default is `present`.
+# @param hostname
+#   Hostname associated with the pmie.
+#   Default is `'LOCALHOSTNAME'`.
+# @param primary
+#   Boolean that sets if this pmie is primary.
+#   Default is `false`.
+# @param socks
+#   Boolean that sets if this pmie uses pmsocks.
+#   Default is `false`.
+# @param log_file
+#   The pmie control log file.  Default is `PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log`
+# @param args
+#   Args passed to pmie.  Default is an empty string.
+# @param config_path
+#   Config path for the pmie.  If defined the value is passed as `-c value` to the pmie arguments.  Default is `undef`.
+# @param config_content
+#   The pmie config contents.  Default is `undef`.
+# @param config_source
+#   The pmie config source.  Default is `undef`.
+#
 define pcp::pmie (
   Enum['present', 'absent'] $ensure             = 'present',
   String $hostname                              = 'LOCALHOSTNAME',

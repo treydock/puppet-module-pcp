@@ -1,4 +1,4 @@
-# Private class: See README.md.
+# @api private
 class pcp::config {
 
   file { '/etc/pcp/pmlogger/control.d':

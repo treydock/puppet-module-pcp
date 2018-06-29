@@ -1,4 +1,4 @@
-# Private class: See README.md.
+# @api private
 class pcp::repo {
   if $pcp::manage_repo {
     case $::osfamily {

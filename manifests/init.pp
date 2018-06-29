@@ -1,4 +1,66 @@
-# Class: pcp: See README.md for documentation
+# @summary Manage PCP
+#
+# @example
+#   include ::pcp
+#
+# @param ensure
+#   Defines state of PCP.
+#   Valid values are `running`, `stopped`, or `absent`.
+#   Default is `running`.
+# @param manage_repo
+#   Determines if PCP repo should be managed.
+#   Default is `true`.
+# @param repo_baseurl
+#   Base URL to pcp yum repo.
+#   Default is `https://dl.bintray.com/pcp/el%{::operatingsystemmajrelease}`.
+# @param package_ensure
+#   Package ensure property.
+#   Value is set to absent if `ensure` is `absent`.
+#   Default is `present`.
+# @param package_name
+#   Name of PCP package.
+#   Default is `pcp`.
+# @param extra_packages
+#   Array of extra packages to install for PCP
+# @param service_ensure
+#   Set service ensure property for `pmcd`, `pmie` and `pmlogger` services.
+#   Default is based on `ensure` parameter.
+# @param service_enable
+#   Set service enable property for `pmcd`, `pmie` and `pmlogger` services.
+#   Default is based on `ensure` parameter.
+# @param enable_pmproxy
+#   Boolean that determines if pmproxy service is running/enabled.
+#   Default is `false`.
+# @param manage_user
+#   Boolean that sets if pcp user / group is managed.
+#   Default is `true`.
+# @param pcp_group_gid
+#   pcp group GID.
+#   Default is `undef`.
+# @param pcp_user_uid
+#   pcp user UID.
+#   Default is `undef`.
+# @param cron_ensure
+#   Ensure passed to cron files.
+#   Default based on value of `ensure`.
+# @param pmlogger_cron_template
+#   Template used for pmlogger cron.
+#   Default is `pcp/pcp-pmlogger.cron.erb`.
+# @param pmie_cron_template
+#   Template used for pmie cron.
+#   Default is `pcp/pcp-pmie.cron.erb`.
+# @param include_default_pmlogger
+#   Boolean that determines if default install pmlogger is installed.
+#   Default is `true`.
+# @param include_default_pmie
+#   Boolean that determines if default install pmie is installed.
+#   Default is `true`.
+# @param pmlogger_daily_args
+#   Arguments given to pmlogger_daily that is executed via cron.
+#   Default is `'-X xz -x 3'`.
+# @param pmdas
+#   Hash that defines `pcp::pmda` resources.
+#
 class pcp (
   Enum['running', 'stopped', 'absent'] $ensure  = 'running',
   # Repo
