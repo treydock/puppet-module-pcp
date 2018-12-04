@@ -1,3 +1,19 @@
+## [1.4.0](https://github.com/treydock/puppet-module-pcp/tree/1.4.0) (2018-12-04)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.3.1...1.4.0)
+
+**Implemented enhancements:**
+
+- Support puppet 6 and drop puppet 4 [\#11](https://github.com/treydock/puppet-module-pcp/pull/11) ([treydock](https://github.com/treydock))
+- Support setting pmda arguments [\#9](https://github.com/treydock/puppet-module-pcp/pull/9) ([treydock](https://github.com/treydock))
+
+**Fixed bugs:**
+
+- Use beaker 4.x [\#10](https://github.com/treydock/puppet-module-pcp/pull/10) ([treydock](https://github.com/treydock))
+
+**Merged pull requests:**
+
+- Document with puppet-strings [\#8](https://github.com/treydock/puppet-module-pcp/pull/8) ([treydock](https://github.com/treydock))
+
 ## [1.3.1](https://github.com/treydock/puppet-module-pcp/tree/1.3.1) (2018-06-29)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.3.0...1.3.1)
 
