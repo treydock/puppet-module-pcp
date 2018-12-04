@@ -28,6 +28,8 @@
 # @param config_source
 #   Configuration file source for the PMDA.
 #   Default is `undef`.
+# @param args
+#   Arguments that will be added to pmcd.conf for this PMDA
 #
 define pcp::pmda (
   Enum['present', 'absent'] $ensure           = 'present',
@@ -37,6 +39,7 @@ define pcp::pmda (
   Optional[Stdlib::Absolutepath] $config_path = undef,
   Optional[String] $config_content            = undef,
   Optional[String] $config_source             = undef,
+  Optional[String] $args                      = undef,
 ) {
 
   include pcp
@@ -53,6 +56,7 @@ define pcp::pmda (
           ensure  => $pcp::_package_ensure,
           name    => $_package_name,
           require => Class['pcp::install'],
+          before  => File_line["${name}-args"],
           notify  => Exec["install-${name}"],
         }
       }
@@ -79,12 +83,39 @@ define pcp::pmda (
         }
       }
 
+      if $args {
+        $file_line = {
+          'ensure' => 'present',
+          'line'   => "args=\"${args}\"",
+          'match'  => '^args',
+          'after'  => '^iam',
+        }
+      } else {
+        $file_line = {
+          'ensure'            => 'absent',
+          'match'             => '^args',
+          'match_for_absence' => true,
+        }
+      }
+
+      file_line { "${name}-args":
+        path   => "${_pmda_dir}/Install",
+        notify => Exec["refresh-install-${name}"],
+        *      => $file_line,
+      }
+
       exec { "install-${name}":
         path    => '/usr/bin:/bin:/usr/sbin:/sbin',
         command => "touch ${_pmda_dir}/.NeedInstall",
         creates => "${_pmda_dir}/.NeedInstall",
         unless  => "egrep -q '^${name}\\s+' /etc/pcp/pmcd/pmcd.conf",
         notify  => Service['pmcd'],
+      }
+      exec { "refresh-install-${name}":
+        path        => '/usr/bin:/bin:/usr/sbin:/sbin',
+        command     => "touch ${_pmda_dir}/.NeedInstall",
+        refreshonly => true,
+        notify      => Service['pmcd'],
       }
     }
     'absent': {

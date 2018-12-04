@@ -18,7 +18,18 @@ describe 'pcp::pmda' do
           :ensure   => 'present',
           :name     => 'pcp-pmda-test',
           :require  => 'Class[Pcp::Install]',
+          :before   => 'File_line[test-args]',
           :notify   => 'Exec[install-test]',
+        })
+      end
+
+      it do
+        is_expected.to contain_file_line('test-args').only_with({
+          :path               => '/var/lib/pcp/pmdas/test/Install',
+          :notify             => 'Exec[refresh-install-test]',
+          :ensure             => 'absent',
+          :match              => '^args',
+          :match_for_absence  => 'true',
         })
       end
 
@@ -27,8 +38,17 @@ describe 'pcp::pmda' do
           :path     => '/usr/bin:/bin:/usr/sbin:/sbin',
           :command  => 'touch /var/lib/pcp/pmdas/test/.NeedInstall',
           :creates  => '/var/lib/pcp/pmdas/test/.NeedInstall',
-          :unless   => 'egrep -q \'^test\s+\' /etc/pcp/pmcd/pmcd.conf',
+          :unless   => "egrep -q '^test\\s+' /etc/pcp/pmcd/pmcd.conf",
           :notify   => 'Service[pmcd]',
+        })
+      end
+
+      it do
+        is_expected.to contain_exec('refresh-install-test').with({
+          :path         => '/usr/bin:/bin:/usr/sbin:/sbin',
+          :command      => 'touch /var/lib/pcp/pmdas/test/.NeedInstall',
+          :refreshonly  => 'true',
+          :notify       => 'Service[pmcd]',
         })
       end
 
@@ -67,6 +87,21 @@ describe 'pcp::pmda' do
             :source   => nil,
             :before   => 'Exec[install-test]',
             :notify   => 'Service[pmcd]',
+          })
+        end
+      end
+
+      context 'when args defined' do
+        let(:params) {{ :args => '-A' }}
+
+        it do
+          is_expected.to contain_file_line('test-args').only_with({
+            :path   => '/var/lib/pcp/pmdas/test/Install',
+            :notify => 'Exec[refresh-install-test]',
+            :ensure => 'present',
+            :line   => 'args="-A"',
+            :match  => '^args',
+            :after  => '^iam',
           })
         end
       end
@@ -114,7 +149,9 @@ describe 'pcp::pmda' do
         it { is_expected.not_to contain_package('pcp-pmda-proc') }
         it { is_expected.to contain_file('pmda-config-dir-proc') }
         it { is_expected.to contain_file('pmda-config-proc') }
+        it { is_expected.to contain_file_line('proc-args').with_ensure('absent') }
         it { is_expected.to contain_exec('install-proc') }
+        it { is_expected.to contain_exec('refresh-install-proc') }
       end
 
     end

@@ -298,6 +298,14 @@ Default is `undef`.
 
 Default value: `undef`
 
+##### `args`
+
+Data type: `Optional[String]`
+
+Arguments that will be added to pmcd.conf for this PMDA
+
+Default value: `undef`
+
 ### pcp::pmie
 
 Configure a pmie
