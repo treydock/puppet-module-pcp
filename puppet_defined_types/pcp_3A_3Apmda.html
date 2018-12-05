@@ -6,7 +6,7 @@
 <title>
   Defined Type: pcp::pmda
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.16
   
 </title>
 
@@ -225,6 +225,24 @@ is <code>true</code>.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Arguments that will be added to pmcd.conf for this PMDA</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -235,8 +253,6 @@ is <code>true</code>.</p>
         <pre class="lines">
 
 
-32
-33
 34
 35
 36
@@ -328,10 +344,41 @@ is <code>true</code>.</p>
 122
 123
 124
-125</pre>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/pmda.pp', line 32</span>
+        <pre class="code"><span class="info file"># File 'manifests/pmda.pp', line 34</span>
 
 define pcp::pmda (
   Enum[&#39;present&#39;, &#39;absent&#39;] $ensure           = &#39;present&#39;,
@@ -341,6 +388,7 @@ define pcp::pmda (
   Optional[Stdlib::Absolutepath] $config_path = undef,
   Optional[String] $config_content            = undef,
   Optional[String] $config_source             = undef,
+  Optional[String] $args                      = undef,
 ) {
 
   include pcp
@@ -357,6 +405,7 @@ define pcp::pmda (
           ensure  =&gt; $pcp::_package_ensure,
           name    =&gt; $_package_name,
           require =&gt; Class[&#39;pcp::install&#39;],
+          before  =&gt; File_line[&quot;${name}-args&quot;],
           notify  =&gt; Exec[&quot;install-${name}&quot;],
         }
       }
@@ -383,12 +432,39 @@ define pcp::pmda (
         }
       }
 
+      if $args {
+        $file_line = {
+          &#39;ensure&#39; =&gt; &#39;present&#39;,
+          &#39;line&#39;   =&gt; &quot;args=\&quot;${args}\&quot;&quot;,
+          &#39;match&#39;  =&gt; &#39;^args&#39;,
+          &#39;after&#39;  =&gt; &#39;^iam&#39;,
+        }
+      } else {
+        $file_line = {
+          &#39;ensure&#39;            =&gt; &#39;absent&#39;,
+          &#39;match&#39;             =&gt; &#39;^args&#39;,
+          &#39;match_for_absence&#39; =&gt; true,
+        }
+      }
+
+      file_line { &quot;${name}-args&quot;:
+        path   =&gt; &quot;${_pmda_dir}/Install&quot;,
+        notify =&gt; Exec[&quot;refresh-install-${name}&quot;],
+        *      =&gt; $file_line,
+      }
+
       exec { &quot;install-${name}&quot;:
         path    =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
         command =&gt; &quot;touch ${_pmda_dir}/.NeedInstall&quot;,
         creates =&gt; &quot;${_pmda_dir}/.NeedInstall&quot;,
         unless  =&gt; &quot;egrep -q &#39;^${name}\\s+&#39; /etc/pcp/pmcd/pmcd.conf&quot;,
         notify  =&gt; Service[&#39;pmcd&#39;],
+      }
+      exec { &quot;refresh-install-${name}&quot;:
+        path        =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
+        command     =&gt; &quot;touch ${_pmda_dir}/.NeedInstall&quot;,
+        refreshonly =&gt; true,
+        notify      =&gt; Service[&#39;pmcd&#39;],
       }
     }
     &#39;absent&#39;: {
