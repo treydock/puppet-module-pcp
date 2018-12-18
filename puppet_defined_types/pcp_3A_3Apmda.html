@@ -375,7 +375,8 @@ is <code>true</code>.</p>
 153
 154
 155
-156</pre>
+156
+157</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/pmda.pp', line 34</span>
@@ -486,6 +487,7 @@ define pcp::pmda (
         -&gt; file { &quot;pmda-config-dir-${name}&quot;:
           ensure =&gt; &#39;absent&#39;,
           path   =&gt; $_config_dir,
+          force  =&gt; true,
         }
       }
 
