@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/treydock/puppet-module-pcp/tree/1.4.1) (2018-12-18)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.0...1.4.1)
+
+**Fixed bugs:**
+
+- Fix removal of pmda config directory [\#12](https://github.com/treydock/puppet-module-pcp/pull/12) ([treydock](https://github.com/treydock))
+
 ## [1.4.0](https://github.com/treydock/puppet-module-pcp/tree/1.4.0) (2018-12-04)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.3.1...1.4.0)
 
