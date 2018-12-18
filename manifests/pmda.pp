@@ -137,6 +137,7 @@ define pcp::pmda (
         -> file { "pmda-config-dir-${name}":
           ensure => 'absent',
           path   => $_config_dir,
+          force  => true,
         }
       }
 
