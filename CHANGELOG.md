@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/treydock/puppet-module-pcp/tree/1.4.2) (2019-05-07)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.1...1.4.2)
+
+**Fixed bugs:**
+
+- Remove repo when ensure is absent [\#13](https://github.com/treydock/puppet-module-pcp/pull/13) ([treydock](https://github.com/treydock))
+
 ## [1.4.1](https://github.com/treydock/puppet-module-pcp/tree/1.4.1) (2018-12-18)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.0...1.4.1)
 
