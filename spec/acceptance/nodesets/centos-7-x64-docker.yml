@@ -9,7 +9,7 @@ HOSTS:
     docker_cmd:
       - '/usr/sbin/init'
     docker_image_commands:
-      - 'yum install -y tar wget git'
+      - 'yum install -y tar wget git cronie'
     docker_container_name: pcp-el7
 CONFIG:
   log_level: debug
