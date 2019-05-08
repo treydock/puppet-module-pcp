@@ -94,8 +94,12 @@ describe 'pcp class:' do
       apply_manifest(pp, :catch_changes => true)
     end
 
-    describe package('pcp') do
-      it { should_not be_installed }
+    describe yumrepo('pcp') do
+      it { should_not exist }
+    end
+
+    describe command('rpm -qa | grep -i pcp') do
+      its(:exit_status) { should_not eq 0 }
     end
 
     describe file('/etc/cron.d/pcp-pmlogger') do
