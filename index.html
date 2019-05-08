@@ -93,7 +93,8 @@ module</a></p>
 
 <p>To install PCP to log locally</p>
 
-<pre class="code ruby"><code class="ruby">class { &#39;pcp&#39;: }</code></pre>
+<pre class="code ruby"><code class="ruby">class { &#39;pcp&#39;: }
+</code></pre>
 
 <p>Example of using PCP without default logger and pmie as well as disabling
 pmlogger log archival</p>
@@ -102,7 +103,8 @@ pmlogger log archival</p>
   include_default_pmlogger =&gt; false,
   include_default_pmie     =&gt; false,
   pmlogger_daily_args      =&gt; &#39;-M -k forever&#39;,
-}</code></pre>
+}
+</code></pre>
 
 <p>Define a new primary logger that logs to a shared location</p>
 
@@ -113,11 +115,13 @@ pmlogger log archival</p>
   socks          =&gt; false,
   log_dir        =&gt; &#39;/data/supremm/pmlogger/LOCALHOSTNAME&#39;,
   args           =&gt; &#39;-r -c config.default&#39;,
-}</code></pre>
+}
+</code></pre>
 
 <p>Install and enable a PMDA</p>
 
-<pre class="code ruby"><code class="ruby">pcp::pmda { &#39;slurm&#39;: }</code></pre>
+<pre class="code ruby"><code class="ruby">pcp::pmda { &#39;slurm&#39;: }
+</code></pre>
 
 <h2 id="label-Reference">Reference</h2>
 

@@ -157,7 +157,13 @@
 67
 68
 69
-70</pre>
+70
+71
+72
+73
+74
+75
+76</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/install.pp', line 2</span>
@@ -224,6 +230,12 @@ class pcp::install {
       path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
       command   =&gt; &#39;yum -y remove python-pcp&#39;,
       onlyif    =&gt; &#39;rpm -q python-pcp&#39;,
+      logoutput =&gt; true,
+    }
+    exec { &#39;remove pcp-selinux&#39;:
+      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
+      command   =&gt; &#39;yum -y remove pcp-selinux&#39;,
+      onlyif    =&gt; &#39;rpm -q pcp-selinux&#39;,
       logoutput =&gt; true,
     }
   }
