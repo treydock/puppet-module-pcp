@@ -63,6 +63,12 @@ class pcp::install {
       onlyif    => 'rpm -q python-pcp',
       logoutput => true,
     }
+    exec { 'remove pcp-selinux':
+      path      => '/usr/bin:/bin:/usr/sbin:/sbin',
+      command   => 'yum -y remove pcp-selinux',
+      onlyif    => 'rpm -q pcp-selinux',
+      logoutput => true,
+    }
   }
 
   ensure_packages($pcp::extra_packages, {'ensure' => $pcp::_package_ensure})
