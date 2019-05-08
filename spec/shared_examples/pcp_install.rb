@@ -1,5 +1,4 @@
-shared_examples_for 'pcp::install' do |facts|
-
+shared_examples_for 'pcp::install' do |_facts|
   packages = [
     'pcp',
     'pcp-conf',
@@ -16,24 +15,26 @@ shared_examples_for 'pcp::install' do |facts|
   end
 
   context 'when package_ensure => latest' do
-    let(:params) {{ :package_ensure => 'latest' }}
+    let(:params) { { package_ensure: 'latest' } }
+
     packages.each do |package|
       it { is_expected.to contain_package(package).with_ensure('latest') }
     end
   end
 
   context 'when extra_packages defined' do
-    let(:params) {{ :extra_packages => ['pcp-foo'] }}
+    let(:params) { { extra_packages: ['pcp-foo'] } }
+
     it { is_expected.to have_package_resource_count(packages.size + 1) }
     packages.each do |package|
-        it { is_expected.to contain_package(package).with_ensure('present') }
+      it { is_expected.to contain_package(package).with_ensure('present') }
     end
     it { is_expected.to contain_package('pcp-foo').with_ensure('present') }
 
     context 'when package_ensure => latest' do
-      let(:params) {{ :extra_packages => ['pcp-foo'], :package_ensure => 'latest' }}
+      let(:params) { { extra_packages: ['pcp-foo'], package_ensure: 'latest' } }
+
       it { is_expected.to contain_package('pcp-foo').with_ensure('latest') }
     end
   end
-
 end
