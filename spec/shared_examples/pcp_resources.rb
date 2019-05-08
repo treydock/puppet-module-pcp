@@ -1,14 +1,14 @@
-shared_examples_for 'pcp::resources' do |facts|
+shared_examples_for 'pcp::resources' do |_facts|
   it { is_expected.to have_pcp__pmda_resource_count(0) }
 
   context 'when pmdas defined' do
     let(:params) do
       {
-        :pmdas => {
+        pmdas: {
           'test' => {
             'has_package' => true,
-          }
-        }
+          },
+        },
       }
     end
 
