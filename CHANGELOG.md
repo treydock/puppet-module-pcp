@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/treydock/puppet-module-pcp/tree/1.4.3) (2019-05-08)
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.2...1.4.3)
+
+**Fixed bugs:**
+
+- Remove pcp-selinux when ensure is absent [\#14](https://github.com/treydock/puppet-module-pcp/pull/14) ([treydock](https://github.com/treydock))
+
 ## [1.4.2](https://github.com/treydock/puppet-module-pcp/tree/1.4.2) (2019-05-07)
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.1...1.4.2)
 
