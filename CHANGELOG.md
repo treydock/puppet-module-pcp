@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.6.0](https://github.com/treydock/puppet-module-pcp/tree/v1.6.0) (2019-05-09)
+
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/v1.5.0...v1.6.0)
+
+### Added
+
+- Simplify package removal when absent set [\#16](https://github.com/treydock/puppet-module-pcp/pull/16) ([treydock](https://github.com/treydock))
+
 ## [v1.5.0](https://github.com/treydock/puppet-module-pcp/tree/v1.5.0) (2019-05-08)
 
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/1.4.3...v1.5.0)
