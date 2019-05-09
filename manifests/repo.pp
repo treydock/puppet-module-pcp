@@ -3,7 +3,7 @@ class pcp::repo {
   if $pcp::manage_repo {
     case $::osfamily {
       'RedHat': {
-        if $pcp::ensure == 'absent' {
+        if $pcp::_repo_ensure == 'absent' {
           file { '/etc/yum.repos.d/pcp.repo': ensure => 'absent' }
         } else {
           yumrepo { 'pcp':
