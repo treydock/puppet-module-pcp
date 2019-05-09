@@ -91,6 +91,7 @@ class pcp (
 
   case $ensure {
     'running': {
+      $_repo_ensure       = 'present'
       $_package_ensure    = $package_ensure
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
@@ -99,6 +100,7 @@ class pcp (
       $_service_enable_default  = true
     }
     'stopped': {
+      $_repo_ensure       = 'present'
       $_package_ensure    = $package_ensure
       $_directory_ensure  = 'directory'
       $_resource_ensure   = 'present'
@@ -107,6 +109,7 @@ class pcp (
       $_service_enable_default  = false
     }
     'absent': {
+      $_repo_ensure       = 'absent'
       $_package_ensure    = 'absent'
       $_directory_ensure  = 'absent'
       $_resource_ensure   = 'absent'
