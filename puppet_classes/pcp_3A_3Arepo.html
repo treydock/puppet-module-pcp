@@ -118,7 +118,7 @@ class pcp::repo {
   if $pcp::manage_repo {
     case $::osfamily {
       &#39;RedHat&#39;: {
-        if $pcp::ensure == &#39;absent&#39; {
+        if $pcp::_repo_ensure == &#39;absent&#39; {
           file { &#39;/etc/yum.repos.d/pcp.repo&#39;: ensure =&gt; &#39;absent&#39; }
         } else {
           yumrepo { &#39;pcp&#39;:

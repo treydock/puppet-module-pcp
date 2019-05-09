@@ -546,7 +546,10 @@ is <code>true</code>.</p>
 142
 143
 144
-145</pre>
+145
+146
+147
+148</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 64</span>
@@ -581,6 +584,7 @@ class pcp (
 
   case $ensure {
     &#39;running&#39;: {
+      $_repo_ensure       = &#39;present&#39;
       $_package_ensure    = $package_ensure
       $_directory_ensure  = &#39;directory&#39;
       $_resource_ensure   = &#39;present&#39;
@@ -589,6 +593,7 @@ class pcp (
       $_service_enable_default  = true
     }
     &#39;stopped&#39;: {
+      $_repo_ensure       = &#39;present&#39;
       $_package_ensure    = $package_ensure
       $_directory_ensure  = &#39;directory&#39;
       $_resource_ensure   = &#39;present&#39;
@@ -597,6 +602,7 @@ class pcp (
       $_service_enable_default  = false
     }
     &#39;absent&#39;: {
+      $_repo_ensure       = &#39;absent&#39;
       $_package_ensure    = &#39;absent&#39;
       $_directory_ensure  = &#39;absent&#39;
       $_resource_ensure   = &#39;absent&#39;

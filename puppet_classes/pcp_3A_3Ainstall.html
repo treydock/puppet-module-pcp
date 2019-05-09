@@ -138,32 +138,7 @@
 48
 49
 50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76</pre>
+51</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/install.pp', line 2</span>
@@ -196,47 +171,22 @@ class pcp::install {
       ensure =&gt; $pcp::_package_ensure,
     }
   } else {
-    exec { &#39;remove pcp&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove pcp&#39;,
-      onlyif    =&gt; &#39;rpm -q pcp&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove pcp-conf&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove pcp-conf&#39;,
-      onlyif    =&gt; &#39;rpm -q pcp-conf&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove pcp-doc&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove pcp-doc&#39;,
-      onlyif    =&gt; &#39;rpm -q pcp-doc&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove pcp-libs&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove pcp-libs&#39;,
-      onlyif    =&gt; &#39;rpm -q pcp-libs&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove perl-PCP-PMDA&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove perl-PCP-PMDA&#39;,
-      onlyif    =&gt; &#39;rpm -q perl-PCP-PMDA&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove python-pcp&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove python-pcp&#39;,
-      onlyif    =&gt; &#39;rpm -q python-pcp&#39;,
-      logoutput =&gt; true,
-    }
-    exec { &#39;remove pcp-selinux&#39;:
-      path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
-      command   =&gt; &#39;yum -y remove pcp-selinux&#39;,
-      onlyif    =&gt; &#39;rpm -q pcp-selinux&#39;,
-      logoutput =&gt; true,
+    $packages = [
+      &#39;pcp&#39;,
+      &#39;pcp-conf&#39;,
+      &#39;pcp-doc&#39;,
+      &#39;pcp-libs&#39;,
+      &#39;pearl-PCP-PMDA&#39;,
+      &#39;python-pcp&#39;,
+      &#39;pcp-selinux&#39;
+    ]
+    $packages.each |$package| {
+      exec { &quot;remove ${package}&quot;:
+        path      =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
+        command   =&gt; &quot;yum -y remove ${package}&quot;,
+        onlyif    =&gt; &quot;rpm -q ${package}&quot;,
+        logoutput =&gt; true,
+      }
     }
   }
 
