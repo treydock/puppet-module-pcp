@@ -77,7 +77,7 @@ branches:
     - master
     - /^v\d/
 notifications:
-  email: false
+  email: treydock@gmail.com
 deploy:
   provider: puppetforge
   user: treydock
