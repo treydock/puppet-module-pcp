@@ -13,6 +13,8 @@
 # @param repo_baseurl
 #   Base URL to pcp yum repo.
 #   Default is `https://dl.bintray.com/pcp/el%{::operatingsystemmajrelease}`.
+# @param repo_exclude
+#   Packages to exclude from PCP repo
 # @param package_ensure
 #   Package ensure property.
 #   Value is set to absent if `ensure` is `absent`.
@@ -66,6 +68,7 @@ class pcp (
   # Repo
   Boolean $manage_repo                          = true,
   String $repo_baseurl                          = $pcp::params::repo_baseurl,
+  Optional[String] $repo_exclude                = undef,
   # Package
   String $package_ensure                        = 'present',
   String $package_name                          = 'pcp',
