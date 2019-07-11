@@ -11,6 +11,7 @@ class pcp::repo {
             baseurl  => $pcp::repo_baseurl,
             enabled  => '1',
             gpgcheck => '0',
+            exclude  => $pcp::repo_exclude,
           }
         }
       }

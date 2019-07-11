@@ -66,6 +66,7 @@ class pcp (
   # Repo
   Boolean $manage_repo                          = true,
   String $repo_baseurl                          = $pcp::params::repo_baseurl,
+  Optional[String] $repo_exclude                = undef,
   # Package
   String $package_ensure                        = 'present',
   String $package_name                          = 'pcp',
