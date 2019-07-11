@@ -71,6 +71,14 @@ Default is `https://dl.bintray.com/pcp/el%{::operatingsystemmajrelease}`.
 
 Default value: $pcp::params::repo_baseurl
 
+##### `repo_exclude`
+
+Data type: `Optional[String]`
+
+Packages to exclude from PCP repo
+
+Default value: `undef`
+
 ##### `package_ensure`
 
 Data type: `String`

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.7.0](https://github.com/treydock/puppet-module-pcp/tree/v1.7.0) (2019-07-11)
+
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/v1.6.0...v1.7.0)
+
+### Added
+
+- Support excluding packages from PCP repos [\#17](https://github.com/treydock/puppet-module-pcp/pull/17) ([treydock](https://github.com/treydock))
+
 ## [v1.6.0](https://github.com/treydock/puppet-module-pcp/tree/v1.6.0) (2019-05-09)
 
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/v1.5.0...v1.6.0)
