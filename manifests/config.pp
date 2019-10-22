@@ -53,4 +53,15 @@ class pcp::config {
     content => template($pcp::pmie_cron_template),
   }
 
+  if ! empty($pcp::pcp_conf_configs) {
+    $pcp_conf_changes = $pcp::pcp_conf_configs.map |$key,$value| {
+      "set ${key} '${value}'"
+    }
+    augeas { '/etc/pcp.conf':
+      incl    => '/etc/pcp.conf',
+      lens    => 'Shellvars.lns',
+      changes => $pcp_conf_changes,
+    }
+  }
+
 }
