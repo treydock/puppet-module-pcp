@@ -60,6 +60,8 @@
 # @param pmlogger_daily_args
 #   Arguments given to pmlogger_daily that is executed via cron.
 #   Default is `'-X xz -x 3'`.
+# @param pcp_conf_configs
+#   Hash of configs to manage in /etc/pcp.conf.
 # @param pmdas
 #   Hash that defines `pcp::pmda` resources.
 #
@@ -88,6 +90,7 @@ class pcp (
   Boolean $include_default_pmlogger             = true,
   Boolean $include_default_pmie                 = true,
   String $pmlogger_daily_args                   = '-X xz -x 3',
+  Hash $pcp_conf_configs                        = {},
   # Resources
   Hash $pmdas                                   = {},
 ) {
