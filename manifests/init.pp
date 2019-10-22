@@ -67,7 +67,7 @@ class pcp (
   Enum['running', 'stopped', 'absent'] $ensure  = 'running',
   # Repo
   Boolean $manage_repo                          = true,
-  String $repo_baseurl                          = $pcp::params::repo_baseurl,
+  Optional[String] $repo_baseurl                = undef,
   Optional[String] $repo_exclude                = undef,
   # Package
   String $package_ensure                        = 'present',
@@ -90,7 +90,15 @@ class pcp (
   String $pmlogger_daily_args                   = '-X xz -x 3',
   # Resources
   Hash $pmdas                                   = {},
-) inherits pcp::params {
+) {
+
+  $osfamily = $facts.dig('os', 'family')
+  $osmajor = $facts.dig('os', 'release', 'major')
+  $supported = ['RedHat-6','RedHat-7']
+  $os = "${osfamily}-${osmajor}"
+  if ! ($os in $supported) {
+    fail("Unsupported OS: ${osfamily}, module ${module_name} only supports RedHat 6 and 7")
+  }
 
   case $ensure {
     'running': {
@@ -125,6 +133,7 @@ class pcp (
     }
   }
 
+  $_repo_baseurl = pick($repo_baseurl, "https://dl.bintray.com/pcp/el${facts['os']['release']['major']}")
   $_cron_file_ensure = pick($cron_ensure, $_cron_default)
   $_service_ensure = pick($service_ensure, $_service_ensure_default)
   $_service_enable = pick($service_enable, $_service_enable_default)
