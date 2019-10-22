@@ -74,6 +74,19 @@ PIDFile=/var/lib/pcp/run/pmcd.pid
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
+
+    it 'cleans up' do
+      on hosts, 'rm -f /etc/systemd/system/pmcd.service.d/pid.conf'
+      on hosts, 'systemctl daemon-reload'
+      pp = <<-EOS
+        class { 'pcp':
+          pcp_conf_configs => {
+            'PCP_RUN_DIR' => '/run/pcp',
+          },
+        }
+      EOS
+      apply_manifest(pp, catch_failures: true)
+    end
   end
 
   context 'when ensure => stopped' do
