@@ -10,7 +10,6 @@ describe 'pcp' do
       it { is_expected.to compile.with_all_deps }
 
       it { is_expected.to create_class('pcp') }
-      it { is_expected.to contain_class('pcp::params') }
 
       it { is_expected.to contain_anchor('pcp::start').that_comes_before('Class[pcp::repo]') }
       it { is_expected.to contain_class('pcp::repo').that_comes_before('Class[pcp::user]') }
