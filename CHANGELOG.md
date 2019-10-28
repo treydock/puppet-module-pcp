@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.8.0](https://github.com/treydock/puppet-module-pcp/tree/v1.8.0) (2019-10-28)
+
+[Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/v1.7.0...v1.8.0)
+
+### Added
+
+- Increase stdlib supported versions [\#20](https://github.com/treydock/puppet-module-pcp/pull/20) ([treydock](https://github.com/treydock))
+- Use module Hiera data [\#19](https://github.com/treydock/puppet-module-pcp/pull/19) ([treydock](https://github.com/treydock))
+- Support managing /etc/pcp.conf [\#18](https://github.com/treydock/puppet-module-pcp/pull/18) ([treydock](https://github.com/treydock))
+
 ## [v1.7.0](https://github.com/treydock/puppet-module-pcp/tree/v1.7.0) (2019-07-11)
 
 [Full Changelog](https://github.com/treydock/puppet-module-pcp/compare/v1.6.0...v1.7.0)
@@ -87,6 +97,7 @@ All notable changes to this project will be documented in this file. The format 
 ### Added
 
 - Add service\_ensure and service\_enable parameters. [\#5](https://github.com/treydock/puppet-module-pcp/pull/5) ([treydock](https://github.com/treydock))
+- BREAKING: pmie now has concept of primary.  Requires pcp \>= 3.11.3 [\#2](https://github.com/treydock/puppet-module-pcp/pull/2) ([treydock](https://github.com/treydock))
 
 ## [1.1.1](https://github.com/treydock/puppet-module-pcp/tree/1.1.1) (2018-05-17)
 
@@ -111,10 +122,6 @@ All notable changes to this project will be documented in this file. The format 
 ### Changed
 
 - BREAKING: Use data types for parameters, drop support for Puppet 3 [\#1](https://github.com/treydock/puppet-module-pcp/pull/1) ([treydock](https://github.com/treydock))
-
-### Added
-
-- BREAKING: pmie now has concept of primary.  Requires pcp \>= 3.11.3 [\#2](https://github.com/treydock/puppet-module-pcp/pull/2) ([treydock](https://github.com/treydock))
 
 ## [0.0.3](https://github.com/treydock/puppet-module-pcp/tree/0.0.3) (2017-11-12)
 

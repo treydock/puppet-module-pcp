@@ -13,7 +13,6 @@ _Private Classes_
 
 * `pcp::config`: 
 * `pcp::install`: 
-* `pcp::params`: 
 * `pcp::repo`: 
 * `pcp::resources`: 
 * `pcp::service`: 
@@ -64,12 +63,12 @@ Default value: `true`
 
 ##### `repo_baseurl`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 Base URL to pcp yum repo.
 Default is `https://dl.bintray.com/pcp/el%{::operatingsystemmajrelease}`.
 
-Default value: $pcp::params::repo_baseurl
+Default value: `undef`
 
 ##### `repo_exclude`
 
@@ -213,6 +212,14 @@ Arguments given to pmlogger_daily that is executed via cron.
 Default is `'-X xz -x 3'`.
 
 Default value: '-X xz -x 3'
+
+##### `pcp_conf_configs`
+
+Data type: `Hash`
+
+Hash of configs to manage in /etc/pcp.conf.
+
+Default value: {}
 
 ##### `pmdas`
 
