@@ -124,7 +124,7 @@ class pcp::repo {
         } else {
           yumrepo { &#39;pcp&#39;:
             descr    =&gt; &#39;pcp&#39;,
-            baseurl  =&gt; $pcp::repo_baseurl,
+            baseurl  =&gt; $pcp::_repo_baseurl,
             enabled  =&gt; &#39;1&#39;,
             gpgcheck =&gt; &#39;0&#39;,
             exclude  =&gt; $pcp::repo_exclude,

@@ -62,11 +62,6 @@
       <div id="content"><h1>Puppet Class: pcp</h1>
 <div class="box_info">
   
-  <dl>
-    <dt>Inherits:</dt>
-    <dd><span class='object_link'><a href="pcp_3A_3Aparams.html" title="puppet_classes::pcp::params (puppet_class)">pcp::params</a></span></dd>
-  </dl>
-  
   
   <dl>
     <dt>Defined in:</dt>
@@ -142,10 +137,10 @@
         <span class='name'>repo_baseurl</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$pcp::params::repo_baseurl</tt>)</em>
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
         &mdash;
@@ -457,6 +452,24 @@ is <code>true</code>.</p>
   
     <li>
       
+        <span class='name'>pcp_conf_configs</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash of configs to manage in /etc/pcp.conf.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>pmdas</span>
       
       
@@ -483,8 +496,6 @@ is <code>true</code>.</p>
         <pre class="lines">
 
 
-66
-67
 68
 69
 70
@@ -568,16 +579,28 @@ is <code>true</code>.</p>
 148
 149
 150
-151</pre>
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 66</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 68</span>
 
 class pcp (
   Enum[&#39;running&#39;, &#39;stopped&#39;, &#39;absent&#39;] $ensure  = &#39;running&#39;,
   # Repo
   Boolean $manage_repo                          = true,
-  String $repo_baseurl                          = $pcp::params::repo_baseurl,
+  Optional[String] $repo_baseurl                = undef,
   Optional[String] $repo_exclude                = undef,
   # Package
   String $package_ensure                        = &#39;present&#39;,
@@ -598,9 +621,18 @@ class pcp (
   Boolean $include_default_pmlogger             = true,
   Boolean $include_default_pmie                 = true,
   String $pmlogger_daily_args                   = &#39;-X xz -x 3&#39;,
+  Hash $pcp_conf_configs                        = {},
   # Resources
   Hash $pmdas                                   = {},
-) inherits pcp::params {
+) {
+
+  $osfamily = $facts.dig(&#39;os&#39;, &#39;family&#39;)
+  $osmajor = $facts.dig(&#39;os&#39;, &#39;release&#39;, &#39;major&#39;)
+  $supported = [&#39;RedHat-6&#39;,&#39;RedHat-7&#39;]
+  $os = &quot;${osfamily}-${osmajor}&quot;
+  if ! ($os in $supported) {
+    fail(&quot;Unsupported OS: ${osfamily}, module ${module_name} only supports RedHat 6 and 7&quot;)
+  }
 
   case $ensure {
     &#39;running&#39;: {
@@ -635,6 +667,7 @@ class pcp (
     }
   }
 
+  $_repo_baseurl = pick($repo_baseurl, &quot;https://dl.bintray.com/pcp/el${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}&quot;)
   $_cron_file_ensure = pick($cron_ensure, $_cron_default)
   $_service_ensure = pick($service_ensure, $_service_ensure_default)
   $_service_enable = pick($service_enable, $_service_enable_default)

@@ -143,7 +143,18 @@
 53
 54
 55
-56</pre>
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 2</span>
@@ -200,6 +211,17 @@ class pcp::config {
     group   =&gt; &#39;root&#39;,
     mode    =&gt; &#39;0644&#39;,
     content =&gt; template($pcp::pmie_cron_template),
+  }
+
+  if ! empty($pcp::pcp_conf_configs) {
+    $pcp_conf_changes = $pcp::pcp_conf_configs.map |$key,$value| {
+      &quot;set ${key} &#39;${value}&#39;&quot;
+    }
+    augeas { &#39;/etc/pcp.conf&#39;:
+      incl    =&gt; &#39;/etc/pcp.conf&#39;,
+      lens    =&gt; &#39;Shellvars.lns&#39;,
+      changes =&gt; $pcp_conf_changes,
+    }
   }
 
 }</pre>
