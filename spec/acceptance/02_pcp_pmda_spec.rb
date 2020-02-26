@@ -65,7 +65,7 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'install nfsclient pmda' do
+  context 'install nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
     it 'runs successfully' do
       pp = <<-EOS
         pcp::pmda { 'nfsclient':
@@ -87,7 +87,7 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'remove nfsclient pmda' do
+  context 'remove nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
     it 'runs successfully' do
       pp = <<-EOS
         pcp::pmda { 'nfsclient':
