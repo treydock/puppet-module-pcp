@@ -97,10 +97,10 @@ class pcp (
 
   $osfamily = $facts.dig('os', 'family')
   $osmajor = $facts.dig('os', 'release', 'major')
-  $supported = ['RedHat-6','RedHat-7']
+  $supported = ['RedHat-6','RedHat-7','RedHat-8']
   $os = "${osfamily}-${osmajor}"
   if ! ($os in $supported) {
-    fail("Unsupported OS: ${osfamily}, module ${module_name} only supports RedHat 6 and 7")
+    fail("Unsupported OS: ${osfamily}, module ${module_name} only supports RedHat 6-8")
   }
 
   case $ensure {

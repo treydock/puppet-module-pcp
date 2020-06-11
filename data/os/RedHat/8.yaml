@@ -1,0 +1,9 @@
+---
+pcp::install::packages:
+  - 'pcp'
+  - 'pcp-conf'
+  - 'pcp-doc'
+  - 'pcp-libs'
+  - 'perl-PCP-PMDA'
+  - 'python3-pcp'
+  - 'pcp-selinux'

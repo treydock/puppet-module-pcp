@@ -66,7 +66,7 @@ define pcp::pmlogger (
   }
 
   $_pmlogger_config_path = "/etc/pcp/pmlogger/control.d/${name}"
-  $_line = "#This file is managed by Puppet\n${hostname} ${_primary} ${_socks} \"${log_dir}\" ${_args}\n"
+  $_line = "#This file is managed by Puppet\n${hostname} ${_primary} ${_socks} ${log_dir} ${_args}\n"
 
   file { "pmlogger-${name}":
     ensure  => $ensure,

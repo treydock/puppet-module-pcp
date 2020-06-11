@@ -1,42 +1,13 @@
 # @api private
-class pcp::install {
+class pcp::install(
+  Array[String] $packages = [],
+) {
+  $all_packages = [$pcp::package_name] + $packages
 
   if $pcp::_package_ensure != 'absent' {
-    package { 'pcp':
-      ensure => $pcp::_package_ensure,
-      name   => $pcp::package_name,
-    }
-
-    package { 'pcp-conf':
-      ensure => $pcp::_package_ensure,
-    }
-
-    package { 'pcp-doc':
-      ensure => $pcp::_package_ensure,
-    }
-
-    package { 'pcp-libs':
-      ensure => $pcp::_package_ensure,
-    }
-
-    package { 'perl-PCP-PMDA':
-      ensure => $pcp::_package_ensure,
-    }
-
-    package { 'python-pcp':
-      ensure => $pcp::_package_ensure,
-    }
+    ensure_packages($all_packages, {'ensure' => $pcp::_package_ensure})
   } else {
-    $packages = [
-      'pcp',
-      'pcp-conf',
-      'pcp-doc',
-      'pcp-libs',
-      'pearl-PCP-PMDA',
-      'python-pcp',
-      'pcp-selinux'
-    ]
-    $packages.each |$package| {
+    $all_packages.each |$package| {
       exec { "remove ${package}":
         path      => '/usr/bin:/bin:/usr/sbin:/sbin',
         command   => "yum -y remove ${package}",
