@@ -1,25 +1,25 @@
 shared_examples_for 'pcp::install' do |facts|
-  if facts[:os]['release']['major'].to_s == '7'
-    packages = [
-      'pcp',
-      'pcp-conf',
-      'pcp-doc',
-      'pcp-libs',
-      'perl-PCP-PMDA',
-      'python-pcp',
-      'pcp-selinux',
-    ]
-  else
-    packages = [
-      'pcp',
-      'pcp-conf',
-      'pcp-doc',
-      'pcp-libs',
-      'perl-PCP-PMDA',
-      'python3-pcp',
-      'pcp-selinux',
-    ]
-  end
+  packages = if facts[:os]['release']['major'].to_s == '7'
+               [
+                 'pcp',
+                 'pcp-conf',
+                 'pcp-doc',
+                 'pcp-libs',
+                 'perl-PCP-PMDA',
+                 'python-pcp',
+                 'pcp-selinux',
+               ]
+             else
+               [
+                 'pcp',
+                 'pcp-conf',
+                 'pcp-doc',
+                 'pcp-libs',
+                 'perl-PCP-PMDA',
+                 'python3-pcp',
+                 'pcp-selinux',
+               ]
+             end
 
   it { is_expected.to have_package_resource_count(packages.size) }
 

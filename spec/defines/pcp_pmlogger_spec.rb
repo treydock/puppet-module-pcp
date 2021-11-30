@@ -59,7 +59,8 @@ describe 'pcp::pmlogger' do
               'LOCALHOSTNAME y n "/dne/supremm/LOCALHOSTNAME/$(date +%Y/%m/%d)" -r -c /etc/pcp/pmlogger/pmlogger-supremm.config',
               '',
             ].join("\n"),
-            notify: 'Service[pmlogger]')
+            notify: 'Service[pmlogger]',
+          )
         end
 
         it do
