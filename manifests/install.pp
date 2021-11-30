@@ -1,13 +1,9 @@
 # @api private
-class pcp::install(
-  Array[String] $packages = [],
-) {
-  $all_packages = [$pcp::package_name] + $packages
-
+class pcp::install{
   if $pcp::_package_ensure != 'absent' {
-    ensure_packages($all_packages, {'ensure' => $pcp::_package_ensure})
+    ensure_packages($pcp::packages, {'ensure' => $pcp::_package_ensure})
   } else {
-    $all_packages.each |$package| {
+    $pcp::packages.each |$package| {
       exec { "remove ${package}":
         path      => '/usr/bin:/bin:/usr/sbin:/sbin',
         command   => "yum -y remove ${package}",
@@ -18,5 +14,4 @@ class pcp::install(
   }
 
   ensure_packages($pcp::extra_packages, {'ensure' => $pcp::_package_ensure})
-
 }

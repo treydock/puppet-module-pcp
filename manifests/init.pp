@@ -7,10 +7,10 @@
 #   Defines state of PCP.
 # @param package_ensure
 #   Package ensure property.
-# @param package_name
-#   Name of PCP package.
+# @param packages
+#   Array of packages to install for PCP
 # @param extra_packages
-#   Array of extra packages to install for PCP
+#   Extra packages to install
 # @param service_ensure
 #   Set service ensure property for `pmcd`, `pmie` and `pmlogger` services.
 #   Default is based on `ensure` parameter.
@@ -47,8 +47,8 @@ class pcp (
   Enum['running', 'stopped', 'absent'] $ensure  = 'running',
   # Package
   String $package_ensure                        = 'present',
-  String $package_name                          = 'pcp',
-  Array $extra_packages                         = [],
+  Array $packages = ['pcp', 'pcp-conf', 'pcp-doc', 'pcp-libs', 'perl-PCP-PMDA', 'python-pcp', 'pcp-selinux'],
+  Array $extra_packages = [],
   # Service
   Optional[String] $service_ensure              = undef,
   Optional[Boolean] $service_enable             = undef,
