@@ -22,7 +22,7 @@ describe 'pcp::pmlogger' do
                                                            mode: '0644',
                                                            content: [
                                                              '#This file is managed by Puppet',
-                                                             'LOCALHOSTNAME y n "PCP_LOG_DIR/pmlogger/LOCALHOSTNAME" -r -T24h10m -c config.default',
+                                                             'LOCALHOSTNAME y n PCP_LOG_DIR/pmlogger/LOCALHOSTNAME -r -T24h10m -c config.default',
                                                              '',
                                                            ].join("\n"),
                                                            notify: 'Service[pmlogger]')
@@ -38,7 +38,7 @@ describe 'pcp::pmlogger' do
             hostname: 'LOCALHOSTNAME',
             primary: true,
             socks: false,
-            log_dir: '/dne/supremm/LOCALHOSTNAME',
+            log_dir: '/dne/supremm/LOCALHOSTNAME/$(date +%Y/%m/%d)',
             args: '-r',
             config_path: '/etc/pcp/pmlogger/pmlogger-supremm.config',
             config_content: 'some content',
@@ -48,17 +48,18 @@ describe 'pcp::pmlogger' do
         it { is_expected.to contain_pcp__pmlogger('supremm') }
 
         it do
-          is_expected.to contain_file('pmlogger-supremm').with(ensure: 'present',
-                                                               path: '/etc/pcp/pmlogger/control.d/supremm',
-                                                               owner: 'root',
-                                                               group: 'root',
-                                                               mode: '0644',
-                                                               content: [
-                                                                 '#This file is managed by Puppet',
-                                                                 'LOCALHOSTNAME y n "/dne/supremm/LOCALHOSTNAME" -r -c /etc/pcp/pmlogger/pmlogger-supremm.config',
-                                                                 '',
-                                                               ].join("\n"),
-                                                               notify: 'Service[pmlogger]')
+          is_expected.to contain_file('pmlogger-supremm').with(
+            ensure: 'present',
+            path: '/etc/pcp/pmlogger/control.d/supremm',
+            owner: 'root',
+            group: 'root',
+            mode: '0644',
+            content: [
+              '#This file is managed by Puppet',
+              'LOCALHOSTNAME y n "/dne/supremm/LOCALHOSTNAME/$(date +%Y/%m/%d)" -r -c /etc/pcp/pmlogger/pmlogger-supremm.config',
+              '',
+            ].join("\n"),
+            notify: 'Service[pmlogger]')
         end
 
         it do
