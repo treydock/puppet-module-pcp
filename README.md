@@ -1,7 +1,8 @@
 # puppet-module-pcp
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/treydock/pcp.svg)](https://forge.puppetlabs.com/treydock/pcp)
-[![Build Status](https://travis-ci.org/treydock/puppet-module-pcp.svg?branch=master)](https://travis-ci.org/treydock/puppet-module-pcp)
+[![CI Status](https://github.com/treydock/puppet-module-pcp/workflows/CI/badge.svg?branch=master)](https://github.com/treydock/puppet-module-pcp/actions?query=workflow%3ACI)
+
 
 1. [Overview](#overview)
 2. [Usage - Configuration options](#usage)
@@ -56,26 +57,4 @@ This module only works with PCP >= 3.11.3
 
 Tested using
 
-* CentOS 6
-* CentOS 7
-
-## Development
-
-### Testing
-
-Testing requires the following dependencies:
-
-* rake
-* bundler
-
-Install gem dependencies
-
-    bundle install
-
-Run unit tests
-
-    bundle exec rake test
-
-If you have Vagrant >= 1.2.0 installed you can run system tests
-
-    bundle exec rake beaker
+* RedHat/CentOS 7

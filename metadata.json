@@ -10,28 +10,19 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.1 <7.0.0"
+      "version_requirement": ">= 4.13.1 <9.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "6",
         "7"
       ]
     }
@@ -39,7 +30,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 7.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
   "description": "PCP module",
@@ -47,7 +38,7 @@
     "metrics",
     "monitoring"
   ],
-  "pdk-version": "1.14.1",
+  "pdk-version": "1.17.0",
   "template-url": "https://github.com/treydock/pdk-templates.git#master",
-  "template-ref": "heads/master-0-gaddf0b8"
+  "template-ref": "heads/master-0-g3b13f94"
 }
