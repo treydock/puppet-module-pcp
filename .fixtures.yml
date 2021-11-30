@@ -6,6 +6,5 @@ fixtures:
     yumrepo_core:
       repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
       ref: 1.0.1
-      puppet_version: ">= 6.0.0"
   symlinks:
     pcp: "#{source_dir}"

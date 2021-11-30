@@ -13,11 +13,6 @@ describe 'pcp class:' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe yumrepo('pcp') do
-      it { is_expected.to exist }
-      it { is_expected.to be_enabled }
-    end
-
     describe package('pcp') do
       it { is_expected.to be_installed }
     end
@@ -135,10 +130,6 @@ PIDFile=/var/lib/pcp/run/pmcd.pid
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
-    end
-
-    describe yumrepo('pcp') do
-      it { is_expected.not_to exist }
     end
 
     describe command('rpm -qa | grep -i pcp') do
