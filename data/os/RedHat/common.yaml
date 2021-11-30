@@ -4,6 +4,6 @@ pcp::install::packages:
   - 'pcp-conf'
   - 'pcp-doc'
   - 'pcp-libs'
-  - 'pearl-PCP-PMDA'
+  - 'perl-PCP-PMDA'
   - 'python-pcp'
   - 'pcp-selinux'
