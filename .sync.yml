@@ -3,15 +3,13 @@
   acceptance_matrix:
     set:
       - centos-7
-      - ---rocky-8
+      - rocky-8
     puppet:
       - puppet6
       - puppet7
 .gitlab-ci.yml:
   delete: true
 appveyor.yml:
-  delete: true
-spec/acceptance/nodesets/rocky-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-9.yml:
   delete: true
