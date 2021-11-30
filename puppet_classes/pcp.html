@@ -6,15 +6,15 @@
 <title>
   Puppet Class: pcp
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.27
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_classes::pcp";
   relpath = '../';
 </script>
@@ -107,64 +107,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Defines state of PCP. Valid values are <code>running</code>,
-<code>stopped</code>, or <code>absent</code>. Default is
-<code>running</code>.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>manage_repo</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>true</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Determines if PCP repo should be managed. Default is <code>true</code>.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>repo_baseurl</span>
-      
-      
-        <span class='type'>(<tt>Optional[String]</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Base URL to pcp yum repo. Default is
-<code>https://dl.bintray.com/pcp/el%{::operatingsystemmajrelease}</code>.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>repo_exclude</span>
-      
-      
-        <span class='type'>(<tt>Optional[String]</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Packages to exclude from PCP repo</p>
+<p>Defines state of PCP.</p>
 </div>
       
     </li>
@@ -182,26 +125,25 @@
       
         &mdash;
         <div class='inline'>
-<p>Package ensure property. Value is set to absent if <code>ensure</code> is
-<code>absent</code>. Default is <code>present</code>.</p>
+<p>Package ensure property.</p>
 </div>
       
     </li>
   
     <li>
       
-        <span class='name'>package_name</span>
+        <span class='name'>packages</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>&#39;pcp&#39;</tt>)</em>
+        <em class="default">(defaults to: <tt>[&#39;pcp&#39;, &#39;pcp-conf&#39;, &#39;pcp-doc&#39;, &#39;pcp-libs&#39;, &#39;perl-PCP-PMDA&#39;, &#39;python-pcp&#39;, &#39;pcp-selinux&#39;]</tt>)</em>
       
       
         &mdash;
         <div class='inline'>
-<p>Name of PCP package. Default is <code>pcp</code>.</p>
+<p>Array of packages to install for PCP</p>
 </div>
       
     </li>
@@ -219,7 +161,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of extra packages to install for PCP</p>
+<p>Extra packages to install</p>
 </div>
       
     </li>
@@ -277,8 +219,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines if pmproxy service is running/enabled. Default is
-<code>false</code>.</p>
+<p>Boolean that determines if pmproxy service is running/enabled.</p>
 </div>
       
     </li>
@@ -296,8 +237,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that sets if pcp user / group is managed. Default is
-<code>true</code>.</p>
+<p>Boolean that sets if pcp user / group is managed.</p>
 </div>
       
     </li>
@@ -315,7 +255,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>pcp group GID. Default is <code>undef</code>.</p>
+<p>pcp group GID.</p>
 </div>
       
     </li>
@@ -333,7 +273,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>pcp user UID. Default is <code>undef</code>.</p>
+<p>pcp user UID.</p>
 </div>
       
     </li>
@@ -369,8 +309,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Template used for pmlogger cron. Default is
-<code>pcp/pcp-pmlogger.cron.erb</code>.</p>
+<p>Template used for pmlogger cron.</p>
 </div>
       
     </li>
@@ -388,7 +327,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Template used for pmie cron. Default is <code>pcp/pcp-pmie.cron.erb</code>.</p>
+<p>Template used for pmie cron.</p>
 </div>
       
     </li>
@@ -406,8 +345,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines if default install pmlogger is installed. Default
-is <code>true</code>.</p>
+<p>Boolean that determines if default install pmlogger is installed.</p>
 </div>
       
     </li>
@@ -425,8 +363,7 @@ is <code>true</code>.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines if default install pmie is installed. Default is
-<code>true</code>.</p>
+<p>Boolean that determines if default install pmie is installed.</p>
 </div>
       
     </li>
@@ -444,8 +381,7 @@ is <code>true</code>.</p>
       
         &mdash;
         <div class='inline'>
-<p>Arguments given to pmlogger_daily that is executed via cron. Default is
-<code>&#39;-X xz -x 3&#39;</code>.</p>
+<p>Arguments given to pmlogger_daily that is executed via cron.</p>
 </div>
       
     </li>
@@ -489,6 +425,7 @@ is <code>true</code>.</p>
 </ul>
 
 
+
 </div><div class="method_details_list">
   <table class="source_code">
     <tr>
@@ -496,6 +433,28 @@ is <code>true</code>.</p>
         <pre class="lines">
 
 
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
 68
 69
 70
@@ -546,66 +505,17 @@ is <code>true</code>.</p>
 115
 116
 117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163</pre>
+118</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 68</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 46</span>
 
 class pcp (
   Enum[&#39;running&#39;, &#39;stopped&#39;, &#39;absent&#39;] $ensure  = &#39;running&#39;,
-  # Repo
-  Boolean $manage_repo                          = true,
-  Optional[String] $repo_baseurl                = undef,
-  Optional[String] $repo_exclude                = undef,
   # Package
   String $package_ensure                        = &#39;present&#39;,
-  String $package_name                          = &#39;pcp&#39;,
-  Array $extra_packages                         = [],
+  Array $packages = [&#39;pcp&#39;, &#39;pcp-conf&#39;, &#39;pcp-doc&#39;, &#39;pcp-libs&#39;, &#39;perl-PCP-PMDA&#39;, &#39;python-pcp&#39;, &#39;pcp-selinux&#39;],
+  Array $extra_packages = [],
   # Service
   Optional[String] $service_ensure              = undef,
   Optional[Boolean] $service_enable             = undef,
@@ -626,17 +536,8 @@ class pcp (
   Hash $pmdas                                   = {},
 ) {
 
-  $osfamily = $facts.dig(&#39;os&#39;, &#39;family&#39;)
-  $osmajor = $facts.dig(&#39;os&#39;, &#39;release&#39;, &#39;major&#39;)
-  $supported = [&#39;RedHat-6&#39;,&#39;RedHat-7&#39;]
-  $os = &quot;${osfamily}-${osmajor}&quot;
-  if ! ($os in $supported) {
-    fail(&quot;Unsupported OS: ${osfamily}, module ${module_name} only supports RedHat 6 and 7&quot;)
-  }
-
   case $ensure {
     &#39;running&#39;: {
-      $_repo_ensure       = &#39;present&#39;
       $_package_ensure    = $package_ensure
       $_directory_ensure  = &#39;directory&#39;
       $_resource_ensure   = &#39;present&#39;
@@ -645,7 +546,6 @@ class pcp (
       $_service_enable_default  = true
     }
     &#39;stopped&#39;: {
-      $_repo_ensure       = &#39;present&#39;
       $_package_ensure    = $package_ensure
       $_directory_ensure  = &#39;directory&#39;
       $_resource_ensure   = &#39;present&#39;
@@ -654,7 +554,6 @@ class pcp (
       $_service_enable_default  = false
     }
     &#39;absent&#39;: {
-      $_repo_ensure       = &#39;absent&#39;
       $_package_ensure    = &#39;absent&#39;
       $_directory_ensure  = &#39;absent&#39;
       $_resource_ensure   = &#39;absent&#39;
@@ -667,29 +566,21 @@ class pcp (
     }
   }
 
-  $_repo_baseurl = pick($repo_baseurl, &quot;https://dl.bintray.com/pcp/el${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}&quot;)
   $_cron_file_ensure = pick($cron_ensure, $_cron_default)
   $_service_ensure = pick($service_ensure, $_service_ensure_default)
   $_service_enable = pick($service_enable, $_service_enable_default)
 
-  anchor { &#39;pcp::start&#39;: }
-  anchor { &#39;pcp::end&#39;: }
+  contain pcp::user
+  contain pcp::install
+  contain pcp::config
+  contain pcp::resources
+  contain pcp::service
 
-  include pcp::repo
-  include pcp::user
-  include pcp::install
-  include pcp::config
-  include pcp::resources
-  include pcp::service
-
-  Anchor[&#39;pcp::start&#39;]
-  -&gt; Class[&#39;pcp::repo&#39;]
-  -&gt; Class[&#39;pcp::user&#39;]
+  Class[&#39;pcp::user&#39;]
   -&gt; Class[&#39;pcp::install&#39;]
   -&gt; Class[&#39;pcp::config&#39;]
   -&gt; Class[&#39;pcp::resources&#39;]
   -&gt; Class[&#39;pcp::service&#39;]
-  -&gt; Anchor[&#39;pcp::end&#39;]
 
 }</pre>
       </td>

@@ -6,15 +6,15 @@
 <title>
   Defined Type: pcp::pmlogger
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.27
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_defined_types::pcp::pmlogger";
   relpath = '../';
 </script>
@@ -255,6 +255,7 @@ value</code> to the pmlogger arguments. Default is <code>undef</code>.</p>
 </ul>
 
 
+
 </div><div class="method_details_list">
   <table class="source_code">
     <tr>
@@ -323,7 +324,13 @@ value</code> to the pmlogger arguments. Default is <code>undef</code>.</p>
 92
 93
 94
-95</pre>
+95
+96
+97
+98
+99
+100
+101</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/pmlogger.pp', line 34</span>
@@ -356,6 +363,12 @@ define pcp::pmlogger (
     $_socks = &#39;n&#39;
   }
 
+  if $log_dir =~ /\$/ {
+    $_log_dir = &quot;\&quot;${log_dir}\&quot;&quot;
+  } else {
+    $_log_dir = $log_dir
+  }
+
   if $config_path {
     $_args = &quot;${args} -c ${config_path}&quot;
   } else {
@@ -363,7 +376,7 @@ define pcp::pmlogger (
   }
 
   $_pmlogger_config_path = &quot;/etc/pcp/pmlogger/control.d/${name}&quot;
-  $_line = &quot;#This file is managed by Puppet\n${hostname} ${_primary} ${_socks} \&quot;${log_dir}\&quot; ${_args}\n&quot;
+  $_line = &quot;#This file is managed by Puppet\n${hostname} ${_primary} ${_socks} ${_log_dir} ${_args}\n&quot;
 
   file { &quot;pmlogger-${name}&quot;:
     ensure  =&gt; $ensure,

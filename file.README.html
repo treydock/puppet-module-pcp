@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.27
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "";
   relpath = '';
 </script>
@@ -62,24 +62,24 @@
 
 <p><a href="https://forge.puppetlabs.com/treydock/pcp"><img
 src="http://img.shields.io/puppetforge/v/treydock/pcp.svg"></a> <a
-href="https://travis-ci.org/treydock/puppet-module-pcp"><img
-src="https://travis-ci.org/treydock/puppet-module-pcp.svg?branch=master"></a></p>
+href="https://github.com/treydock/puppet-module-pcp/actions?query=workflow%3ACI"><img
+src="https://github.com/treydock/puppet-module-pcp/workflows/CI/badge.svg?branch=master"></a></p>
 <ol><li>
-<p><a href="#label-Overview">Overview</a></p>
+<p><a href="#overview">Overview</a></p>
 </li><li>
-<p><a href="#label-Usage">Usage - Configuration options</a></p>
+<p><a href="#usage">Usage - Configuration options</a></p>
 </li><li>
-<p><a href="#label-Reference">Reference - Parameter and detailed reference to all
+<p><a href="#reference">Reference - Parameter and detailed reference to all
 options</a></p>
 <ul><li>
-<p><a href="#label-Public+classes">Public Classes</a></p>
+<p><a href="#public-classes">Public Classes</a></p>
 </li><li>
-<p><a href="#label-Public+defines">Public Defines</a></p>
+<p><a href="#public-defines">Public Defines</a></p>
 </li></ul>
 </li><li>
-<p><a href="#label-Compatibility">Compatibility</a></p>
+<p><a href="#compatibility">Compatibility</a></p>
 </li><li>
-<p><a href="#label-Development">Development - Guide for contributing to the
+<p><a href="#development">Development - Guide for contributing to the
 module</a></p>
 </li></ol>
 
@@ -134,36 +134,10 @@ href="http://treydock.github.io/puppet-module-pcp/">treydock.github.io/puppet-mo
 
 <p>Tested using</p>
 <ul><li>
-<p>CentOS 6</p>
+<p>RedHat/CentOS 7</p>
 </li><li>
-<p>CentOS 7</p>
+<p>RedHat/Rocky 8</p>
 </li></ul>
-
-<h2 id="label-Development">Development</h2>
-
-<h3 id="label-Testing">Testing</h3>
-
-<p>Testing requires the following dependencies:</p>
-<ul><li>
-<p>rake</p>
-</li><li>
-<p>bundler</p>
-</li></ul>
-
-<p>Install gem dependencies</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_install'>install</span>
-</code></pre>
-
-<p>Run unit tests</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span>
-</code></pre>
-
-<p>If you have Vagrant &gt;= 1.2.0 installed you can run system tests</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_beaker'>beaker</span>
-</code></pre>
 </div></div>
 
       <div id="footer">
