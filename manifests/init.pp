@@ -42,6 +42,10 @@
 #   Hash of configs to manage in /etc/pcp.conf.
 # @param pmdas
 #   Hash that defines `pcp::pmda` resources.
+# @param pmies
+#   Hash that defines `pcp::pmie` resources.
+# @param pmloggers
+#   Hash that defines `pcp::pmlogger` resources.
 #
 class pcp (
   Enum['running', 'stopped', 'absent'] $ensure  = 'running',
@@ -67,6 +71,8 @@ class pcp (
   Hash $pcp_conf_configs                        = {},
   # Resources
   Hash $pmdas                                   = {},
+  Hash $pmies                                   = {},
+  Hash $pmloggers                               = {},
 ) {
 
   case $ensure {
