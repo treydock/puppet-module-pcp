@@ -60,6 +60,8 @@ The following parameters are available in the `pcp` class:
 * [`pmlogger_daily_args`](#pmlogger_daily_args)
 * [`pcp_conf_configs`](#pcp_conf_configs)
 * [`pmdas`](#pmdas)
+* [`pmies`](#pmies)
+* [`pmloggers`](#pmloggers)
 
 ##### <a name="ensure"></a>`ensure`
 
@@ -205,6 +207,22 @@ Default value: `{}`
 Data type: `Hash`
 
 Hash that defines `pcp::pmda` resources.
+
+Default value: `{}`
+
+##### <a name="pmies"></a>`pmies`
+
+Data type: `Hash`
+
+Hash that defines `pcp::pmie` resources.
+
+Default value: `{}`
+
+##### <a name="pmloggers"></a>`pmloggers`
+
+Data type: `Hash`
+
+Hash that defines `pcp::pmlogger` resources.
 
 Default value: `{}`
 
