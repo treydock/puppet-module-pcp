@@ -422,6 +422,42 @@ parameter.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>pmies</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash that defines <code>pcp::pmie</code> resources.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pmloggers</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash that defines <code>pcp::pmlogger</code> resources.</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -433,10 +469,6 @@ parameter.</p>
         <pre class="lines">
 
 
-46
-47
-48
-49
 50
 51
 52
@@ -505,10 +537,16 @@ parameter.</p>
 115
 116
 117
-118</pre>
+118
+119
+120
+121
+122
+123
+124</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 46</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 50</span>
 
 class pcp (
   Enum[&#39;running&#39;, &#39;stopped&#39;, &#39;absent&#39;] $ensure  = &#39;running&#39;,
@@ -534,6 +572,8 @@ class pcp (
   Hash $pcp_conf_configs                        = {},
   # Resources
   Hash $pmdas                                   = {},
+  Hash $pmies                                   = {},
+  Hash $pmloggers                               = {},
 ) {
 
   case $ensure {
