@@ -43,7 +43,7 @@ describe 'pcp class:' do
     end
   end
 
-  context 'when pcp.conf modified', if: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i >= 7) do
+  context 'when pcp.conf modified' do
     it 'runs succcessfully' do
       pp = <<-PP
         class { 'pcp':
