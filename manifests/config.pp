@@ -1,6 +1,5 @@
 # @api private
 class pcp::config {
-
   file { '/etc/pcp/pmlogger/control.d':
     ensure  => $pcp::_directory_ensure,
     owner   => 'root',
@@ -15,7 +14,7 @@ class pcp::config {
     pcp::pmlogger { 'local':
       ensure  => $pcp::_resource_ensure,
       primary => true,
-      args    => '-r -T24h10m -c config.default'
+      args    => '-r -T24h10m -c config.default',
     }
   }
 
@@ -63,5 +62,4 @@ class pcp::config {
       changes => $pcp_conf_changes,
     }
   }
-
 }

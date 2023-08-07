@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'pcp class:' do
   context 'with default parameters' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         class { 'pcp': }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       # sometimes pmlogger takes a bit of time to start
@@ -43,20 +45,20 @@ describe 'pcp class:' do
 
   context 'when pcp.conf modified', if: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i >= 7) do
     it 'runs succcessfully' do
-      pp = <<-EOS
+      pp = <<-PP
         class { 'pcp':
           pcp_conf_configs => {
             'PCP_RUN_DIR' => '/var/lib/pcp/run',
           },
         }
-      EOS
+      PP
 
       on hosts, 'mkdir -p /var/lib/pcp/run'
       on hosts, 'mkdir -p /etc/systemd/system/pmcd.service.d'
-      pmcd_unit_conf = <<-EOS
+      pmcd_unit_conf = <<-UNIT
 [Service]
 PIDFile=/var/lib/pcp/run/pmcd.pid
-      EOS
+      UNIT
       create_remote_file(hosts, '/etc/systemd/system/pmcd.service.d/pid.conf', pmcd_unit_conf)
       on hosts, 'systemctl daemon-reload'
       apply_manifest(pp, catch_failures: true)
@@ -73,22 +75,22 @@ PIDFile=/var/lib/pcp/run/pmcd.pid
     it 'cleans up' do
       on hosts, 'rm -f /etc/systemd/system/pmcd.service.d/pid.conf'
       on hosts, 'systemctl daemon-reload'
-      pp = <<-EOS
+      pp = <<-PP
         class { 'pcp':
           pcp_conf_configs => {
             'PCP_RUN_DIR' => '/run/pcp',
           },
         }
-      EOS
+      PP
       apply_manifest(pp, catch_failures: true)
     end
   end
 
   context 'when ensure => stopped' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         class { 'pcp': ensure => 'stopped' }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
@@ -124,9 +126,9 @@ PIDFile=/var/lib/pcp/run/pmcd.pid
 
   context 'when ensure => absent' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         class { 'pcp': ensure => 'absent' }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)

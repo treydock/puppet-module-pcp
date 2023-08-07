@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'pcp::pmie' do
@@ -26,7 +28,7 @@ describe 'pcp::pmie' do
 
       it { is_expected.not_to contain_file('pmlogger-local-config') }
 
-      context 'SUPReMM example' do
+      describe 'SUPReMM example' do
         let(:title) { 'supremm' }
         let(:params) do
           {
@@ -36,7 +38,7 @@ describe 'pcp::pmie' do
             socks: false,
             log_file: 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
             config_path: '/etc/pcp/pmie/pmie-supremm.config',
-            config_content: 'some content',
+            config_content: 'some content'
           }
         end
 
@@ -51,7 +53,7 @@ describe 'pcp::pmie' do
                                                            content: [
                                                              '#This file is managed by Puppet',
                                                              'LOCALHOSTNAME y n PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log  -c /etc/pcp/pmie/pmie-supremm.config',
-                                                             '',
+                                                             ''
                                                            ].join("\n"),
                                                            notify: 'Service[pmie]')
         end

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'pcp::pmda define:' do
-  context 'install rsyslog pmda' do
+  context 'when install rsyslog pmda' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'rsyslog':
           ensure => 'present',
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       # sometimes pmlogger takes a bit of time to start
@@ -24,13 +26,13 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'remove rsyslog pmda' do
+  context 'when remove rsyslog pmda' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'rsyslog':
           ensure => 'absent',
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(10)
@@ -46,14 +48,14 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'uninstall rsyslog pmda' do
+  context 'when uninstall rsyslog pmda' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'rsyslog':
           ensure          => 'absent',
           remove_package  => true,
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(10)
@@ -65,13 +67,13 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'install nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
+  context 'when install nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'nfsclient':
           ensure => 'present',
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(15)
@@ -87,13 +89,13 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'remove nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
+  context 'when remove nfsclient pmda', unless: (fact('os.family') == 'RedHat' && fact('os.release.major').to_i <= 6) do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'nfsclient':
           ensure => 'absent',
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(10)
@@ -109,15 +111,15 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'install proc pmda with args' do
+  context 'when install proc pmda with args' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'proc':
           ensure      => 'present',
           has_package => false,
           args        => '-A',
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(15)
@@ -129,7 +131,7 @@ describe 'pcp::pmda define:' do
     end
 
     describe file('/etc/pcp/pmcd/pmcd.conf') do
-      its(:content) { is_expected.to match %r{^proc.*\-A$} }
+      its(:content) { is_expected.to match %r{^proc.*-A$} }
     end
 
     describe command('pminfo proc') do
@@ -137,14 +139,14 @@ describe 'pcp::pmda define:' do
     end
   end
 
-  context 'remove proc pmda args' do
+  context 'when remove proc pmda args' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
         pcp::pmda { 'proc':
           ensure      => 'present',
           has_package => false,
         }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       sleep(15)
@@ -156,7 +158,7 @@ describe 'pcp::pmda define:' do
     end
 
     describe file('/etc/pcp/pmcd/pmcd.conf') do
-      its(:content) { is_expected.to match %r{^proc.*pmdaproc \-d 3(\s+)?$} }
+      its(:content) { is_expected.to match %r{^proc.*pmdaproc -d 3(\s+)?$} }
     end
 
     describe command('pminfo proc') do

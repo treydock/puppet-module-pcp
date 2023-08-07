@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'pcp::pmda' do
@@ -118,13 +120,13 @@ describe 'pcp::pmda' do
         end
       end
 
-      context 'hotproc pmda' do
+      describe 'hotproc pmda' do
         let(:title) { 'proc' }
         let(:params) do
           {
             has_package: false,
             config_path: '/var/lib/pcp/pmdas/proc/hotproc.conf',
-            config_content: '( (uname != "root") ) || cpuburn > 0.1',
+            config_content: '( (uname != "root") ) || cpuburn > 0.1'
           }
         end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'pcp::user' do |_facts|
   it do
     is_expected.to contain_group('pcp').with(ensure: 'present',

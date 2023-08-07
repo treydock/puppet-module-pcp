@@ -1,6 +1,5 @@
 # @api private
 class pcp::user {
-
   if $pcp::manage_user {
     group { 'pcp':
       ensure     => present,
@@ -23,5 +22,4 @@ class pcp::user {
       forcelocal => true,
     }
   }
-
 }

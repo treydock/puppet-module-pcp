@@ -41,7 +41,6 @@ define pcp::pmda (
   Optional[String] $config_source             = undef,
   Optional[String] $args                      = undef,
 ) {
-
   include pcp
 
   $_package_name = pick($package_name, "pcp-pmda-${name}")
@@ -153,5 +152,4 @@ define pcp::pmda (
       fail("pcp::pmda: ensure must be present or absent, ${ensure} given.")
     }
   }
-
 }

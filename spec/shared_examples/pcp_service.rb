@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'pcp::service' do |_facts|
   it do
     is_expected.to contain_service('pmcd').with(ensure: 'running',
@@ -5,6 +7,7 @@ shared_examples_for 'pcp::service' do |_facts|
                                                 hasstatus: 'true',
                                                 hasrestart: 'true')
   end
+
   it { is_expected.to contain_service('pmcd').that_comes_before('Service[pmlogger]') }
 
   it do
@@ -13,6 +16,7 @@ shared_examples_for 'pcp::service' do |_facts|
                                                     hasstatus: 'true',
                                                     hasrestart: 'true')
   end
+
   it { is_expected.to contain_service('pmlogger').that_comes_before('Service[pmie]') }
 
   it do

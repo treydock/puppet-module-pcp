@@ -1,6 +1,5 @@
 # @api private
 class pcp::service {
-
   if $pcp::enable_pmproxy {
     $_pmproxy_ensure = 'running'
     $_pmproxy_enable = true
@@ -43,5 +42,4 @@ class pcp::service {
     hasstatus  => true,
     hasrestart => true,
   }
-
 }

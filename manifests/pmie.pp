@@ -31,12 +31,11 @@ define pcp::pmie (
   Boolean $primary                              = false,
   Boolean $socks                                = false,
   String $log_file                              = 'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log',
-  String $args                                  = '',
+  String $args                                  = '', # lint:ignore:params_empty_string_assignment
   Optional[Stdlib::Absolutepath] $config_path   = undef,
   Optional[String] $config_content              = undef,
   Optional[String] $config_source               = undef,
 ) {
-
   include pcp
 
   Class['pcp::install'] -> Pcp::Pmie[$title]
@@ -85,5 +84,4 @@ define pcp::pmie (
       before  => File["pmie-${name}"],
     }
   }
-
 }
