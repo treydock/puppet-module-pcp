@@ -20,9 +20,9 @@
 
 ### Defined types
 
-* [`pcp::pmda`](#pcppmda): Install, enable and optionally configure a PMDA
-* [`pcp::pmie`](#pcppmie): Configure a pmie
-* [`pcp::pmlogger`](#pcppmlogger): Configure a pmlogger
+* [`pcp::pmda`](#pcp--pmda): Install, enable and optionally configure a PMDA
+* [`pcp::pmie`](#pcp--pmie): Configure a pmie
+* [`pcp::pmlogger`](#pcp--pmlogger): Configure a pmlogger
 
 ## Classes
 
@@ -42,28 +42,28 @@ include ::pcp
 
 The following parameters are available in the `pcp` class:
 
-* [`ensure`](#ensure)
-* [`package_ensure`](#package_ensure)
-* [`packages`](#packages)
-* [`extra_packages`](#extra_packages)
-* [`service_ensure`](#service_ensure)
-* [`service_enable`](#service_enable)
-* [`enable_pmproxy`](#enable_pmproxy)
-* [`manage_user`](#manage_user)
-* [`pcp_group_gid`](#pcp_group_gid)
-* [`pcp_user_uid`](#pcp_user_uid)
-* [`cron_ensure`](#cron_ensure)
-* [`pmlogger_cron_template`](#pmlogger_cron_template)
-* [`pmie_cron_template`](#pmie_cron_template)
-* [`include_default_pmlogger`](#include_default_pmlogger)
-* [`include_default_pmie`](#include_default_pmie)
-* [`pmlogger_daily_args`](#pmlogger_daily_args)
-* [`pcp_conf_configs`](#pcp_conf_configs)
-* [`pmdas`](#pmdas)
-* [`pmies`](#pmies)
-* [`pmloggers`](#pmloggers)
+* [`ensure`](#-pcp--ensure)
+* [`package_ensure`](#-pcp--package_ensure)
+* [`packages`](#-pcp--packages)
+* [`extra_packages`](#-pcp--extra_packages)
+* [`service_ensure`](#-pcp--service_ensure)
+* [`service_enable`](#-pcp--service_enable)
+* [`enable_pmproxy`](#-pcp--enable_pmproxy)
+* [`manage_user`](#-pcp--manage_user)
+* [`pcp_group_gid`](#-pcp--pcp_group_gid)
+* [`pcp_user_uid`](#-pcp--pcp_user_uid)
+* [`cron_ensure`](#-pcp--cron_ensure)
+* [`pmlogger_cron_template`](#-pcp--pmlogger_cron_template)
+* [`pmie_cron_template`](#-pcp--pmie_cron_template)
+* [`include_default_pmlogger`](#-pcp--include_default_pmlogger)
+* [`include_default_pmie`](#-pcp--include_default_pmie)
+* [`pmlogger_daily_args`](#-pcp--pmlogger_daily_args)
+* [`pcp_conf_configs`](#-pcp--pcp_conf_configs)
+* [`pmdas`](#-pcp--pmdas)
+* [`pmies`](#-pcp--pmies)
+* [`pmloggers`](#-pcp--pmloggers)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-pcp--ensure"></a>`ensure`
 
 Data type: `Enum['running', 'stopped', 'absent']`
 
@@ -71,7 +71,7 @@ Defines state of PCP.
 
 Default value: `'running'`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-pcp--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
@@ -79,7 +79,7 @@ Package ensure property.
 
 Default value: `'present'`
 
-##### <a name="packages"></a>`packages`
+##### <a name="-pcp--packages"></a>`packages`
 
 Data type: `Array`
 
@@ -87,7 +87,7 @@ Array of packages to install for PCP
 
 Default value: `['pcp', 'pcp-conf', 'pcp-doc', 'pcp-libs', 'perl-PCP-PMDA', 'python-pcp', 'pcp-selinux']`
 
-##### <a name="extra_packages"></a>`extra_packages`
+##### <a name="-pcp--extra_packages"></a>`extra_packages`
 
 Data type: `Array`
 
@@ -95,66 +95,66 @@ Extra packages to install
 
 Default value: `[]`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-pcp--service_ensure"></a>`service_ensure`
 
 Data type: `Optional[String]`
 
 Set service ensure property for `pmcd`, `pmie` and `pmlogger` services.
 Default is based on `ensure` parameter.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-pcp--service_enable"></a>`service_enable`
 
 Data type: `Optional[Boolean]`
 
 Set service enable property for `pmcd`, `pmie` and `pmlogger` services.
 Default is based on `ensure` parameter.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="enable_pmproxy"></a>`enable_pmproxy`
+##### <a name="-pcp--enable_pmproxy"></a>`enable_pmproxy`
 
 Data type: `Boolean`
 
 Boolean that determines if pmproxy service is running/enabled.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-pcp--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Boolean that sets if pcp user / group is managed.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="pcp_group_gid"></a>`pcp_group_gid`
+##### <a name="-pcp--pcp_group_gid"></a>`pcp_group_gid`
 
 Data type: `Optional[Integer]`
 
 pcp group GID.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="pcp_user_uid"></a>`pcp_user_uid`
+##### <a name="-pcp--pcp_user_uid"></a>`pcp_user_uid`
 
 Data type: `Optional[Integer]`
 
 pcp user UID.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="cron_ensure"></a>`cron_ensure`
+##### <a name="-pcp--cron_ensure"></a>`cron_ensure`
 
 Data type: `Optional[String]`
 
 Ensure passed to cron files.
 Default based on value of `ensure`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="pmlogger_cron_template"></a>`pmlogger_cron_template`
+##### <a name="-pcp--pmlogger_cron_template"></a>`pmlogger_cron_template`
 
 Data type: `String`
 
@@ -162,7 +162,7 @@ Template used for pmlogger cron.
 
 Default value: `'pcp/pcp-pmlogger.cron.erb'`
 
-##### <a name="pmie_cron_template"></a>`pmie_cron_template`
+##### <a name="-pcp--pmie_cron_template"></a>`pmie_cron_template`
 
 Data type: `String`
 
@@ -170,23 +170,23 @@ Template used for pmie cron.
 
 Default value: `'pcp/pcp-pmie.cron.erb'`
 
-##### <a name="include_default_pmlogger"></a>`include_default_pmlogger`
+##### <a name="-pcp--include_default_pmlogger"></a>`include_default_pmlogger`
 
 Data type: `Boolean`
 
 Boolean that determines if default install pmlogger is installed.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="include_default_pmie"></a>`include_default_pmie`
+##### <a name="-pcp--include_default_pmie"></a>`include_default_pmie`
 
 Data type: `Boolean`
 
 Boolean that determines if default install pmie is installed.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="pmlogger_daily_args"></a>`pmlogger_daily_args`
+##### <a name="-pcp--pmlogger_daily_args"></a>`pmlogger_daily_args`
 
 Data type: `String`
 
@@ -194,7 +194,7 @@ Arguments given to pmlogger_daily that is executed via cron.
 
 Default value: `'-X xz -x 3'`
 
-##### <a name="pcp_conf_configs"></a>`pcp_conf_configs`
+##### <a name="-pcp--pcp_conf_configs"></a>`pcp_conf_configs`
 
 Data type: `Hash`
 
@@ -202,7 +202,7 @@ Hash of configs to manage in /etc/pcp.conf.
 
 Default value: `{}`
 
-##### <a name="pmdas"></a>`pmdas`
+##### <a name="-pcp--pmdas"></a>`pmdas`
 
 Data type: `Hash`
 
@@ -210,7 +210,7 @@ Hash that defines `pcp::pmda` resources.
 
 Default value: `{}`
 
-##### <a name="pmies"></a>`pmies`
+##### <a name="-pcp--pmies"></a>`pmies`
 
 Data type: `Hash`
 
@@ -218,7 +218,7 @@ Hash that defines `pcp::pmie` resources.
 
 Default value: `{}`
 
-##### <a name="pmloggers"></a>`pmloggers`
+##### <a name="-pcp--pmloggers"></a>`pmloggers`
 
 Data type: `Hash`
 
@@ -228,7 +228,7 @@ Default value: `{}`
 
 ## Defined types
 
-### <a name="pcppmda"></a>`pcp::pmda`
+### <a name="pcp--pmda"></a>`pcp::pmda`
 
 Install, enable and optionally configure a PMDA
 
@@ -246,16 +246,16 @@ pcp::pmda { 'nfsclient':
 
 The following parameters are available in the `pcp::pmda` defined type:
 
-* [`ensure`](#ensure)
-* [`has_package`](#has_package)
-* [`package_name`](#package_name)
-* [`remove_package`](#remove_package)
-* [`config_path`](#config_path)
-* [`config_content`](#config_content)
-* [`config_source`](#config_source)
-* [`args`](#args)
+* [`ensure`](#-pcp--pmda--ensure)
+* [`has_package`](#-pcp--pmda--has_package)
+* [`package_name`](#-pcp--pmda--package_name)
+* [`remove_package`](#-pcp--pmda--remove_package)
+* [`config_path`](#-pcp--pmda--config_path)
+* [`config_content`](#-pcp--pmda--config_content)
+* [`config_source`](#-pcp--pmda--config_source)
+* [`args`](#-pcp--pmda--args)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-pcp--pmda--ensure"></a>`ensure`
 
 Data type: `Enum['present', 'absent']`
 
@@ -265,69 +265,69 @@ Default is `'present'`.
 
 Default value: `'present'`
 
-##### <a name="has_package"></a>`has_package`
+##### <a name="-pcp--pmda--has_package"></a>`has_package`
 
 Data type: `Boolean`
 
 Boolean that determines of a package is associated with the PMDA.
 Default is `true`.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-pcp--pmda--package_name"></a>`package_name`
 
 Data type: `Optional[String]`
 
 Package name of PMDA.
 Default is `pcp-pmda-$name`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="remove_package"></a>`remove_package`
+##### <a name="-pcp--pmda--remove_package"></a>`remove_package`
 
 Data type: `Boolean`
 
 Boolean that determines if the package should be removed when `ensure` is `absent`.
 Default is `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="config_path"></a>`config_path`
+##### <a name="-pcp--pmda--config_path"></a>`config_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Configuration file path for this PMDA.
 Default is `/var/lib/pcp/config/${name}/${name}.conf`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_content"></a>`config_content`
+##### <a name="-pcp--pmda--config_content"></a>`config_content`
 
 Data type: `Optional[String]`
 
 Configuration file content for the PMDA.
 Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_source"></a>`config_source`
+##### <a name="-pcp--pmda--config_source"></a>`config_source`
 
 Data type: `Optional[String]`
 
 Configuration file source for the PMDA.
 Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="args"></a>`args`
+##### <a name="-pcp--pmda--args"></a>`args`
 
 Data type: `Optional[String]`
 
 Arguments that will be added to pmcd.conf for this PMDA
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="pcppmie"></a>`pcp::pmie`
+### <a name="pcp--pmie"></a>`pcp::pmie`
 
 Configure a pmie
 
@@ -335,17 +335,17 @@ Configure a pmie
 
 The following parameters are available in the `pcp::pmie` defined type:
 
-* [`ensure`](#ensure)
-* [`hostname`](#hostname)
-* [`primary`](#primary)
-* [`socks`](#socks)
-* [`log_file`](#log_file)
-* [`args`](#args)
-* [`config_path`](#config_path)
-* [`config_content`](#config_content)
-* [`config_source`](#config_source)
+* [`ensure`](#-pcp--pmie--ensure)
+* [`hostname`](#-pcp--pmie--hostname)
+* [`primary`](#-pcp--pmie--primary)
+* [`socks`](#-pcp--pmie--socks)
+* [`log_file`](#-pcp--pmie--log_file)
+* [`args`](#-pcp--pmie--args)
+* [`config_path`](#-pcp--pmie--config_path)
+* [`config_content`](#-pcp--pmie--config_content)
+* [`config_source`](#-pcp--pmie--config_source)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-pcp--pmie--ensure"></a>`ensure`
 
 Data type: `Enum['present', 'absent']`
 
@@ -355,7 +355,7 @@ Default is `present`.
 
 Default value: `'present'`
 
-##### <a name="hostname"></a>`hostname`
+##### <a name="-pcp--pmie--hostname"></a>`hostname`
 
 Data type: `String`
 
@@ -364,25 +364,25 @@ Default is `'LOCALHOSTNAME'`.
 
 Default value: `'LOCALHOSTNAME'`
 
-##### <a name="primary"></a>`primary`
+##### <a name="-pcp--pmie--primary"></a>`primary`
 
 Data type: `Boolean`
 
 Boolean that sets if this pmie is primary.
 Default is `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="socks"></a>`socks`
+##### <a name="-pcp--pmie--socks"></a>`socks`
 
 Data type: `Boolean`
 
 Boolean that sets if this pmie uses pmsocks.
 Default is `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="log_file"></a>`log_file`
+##### <a name="-pcp--pmie--log_file"></a>`log_file`
 
 Data type: `String`
 
@@ -390,7 +390,7 @@ The pmie control log file.  Default is `PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log`
 
 Default value: `'PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log'`
 
-##### <a name="args"></a>`args`
+##### <a name="-pcp--pmie--args"></a>`args`
 
 Data type: `String`
 
@@ -398,31 +398,31 @@ Args passed to pmie.  Default is an empty string.
 
 Default value: `''`
 
-##### <a name="config_path"></a>`config_path`
+##### <a name="-pcp--pmie--config_path"></a>`config_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Config path for the pmie.  If defined the value is passed as `-c value` to the pmie arguments.  Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_content"></a>`config_content`
+##### <a name="-pcp--pmie--config_content"></a>`config_content`
 
 Data type: `Optional[String]`
 
 The pmie config contents.  Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_source"></a>`config_source`
+##### <a name="-pcp--pmie--config_source"></a>`config_source`
 
 Data type: `Optional[String]`
 
 The pmie config source.  Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="pcppmlogger"></a>`pcp::pmlogger`
+### <a name="pcp--pmlogger"></a>`pcp::pmlogger`
 
 Configure a pmlogger
 
@@ -430,17 +430,17 @@ Configure a pmlogger
 
 The following parameters are available in the `pcp::pmlogger` defined type:
 
-* [`ensure`](#ensure)
-* [`hostname`](#hostname)
-* [`primary`](#primary)
-* [`socks`](#socks)
-* [`log_dir`](#log_dir)
-* [`args`](#args)
-* [`config_path`](#config_path)
-* [`config_content`](#config_content)
-* [`config_source`](#config_source)
+* [`ensure`](#-pcp--pmlogger--ensure)
+* [`hostname`](#-pcp--pmlogger--hostname)
+* [`primary`](#-pcp--pmlogger--primary)
+* [`socks`](#-pcp--pmlogger--socks)
+* [`log_dir`](#-pcp--pmlogger--log_dir)
+* [`args`](#-pcp--pmlogger--args)
+* [`config_path`](#-pcp--pmlogger--config_path)
+* [`config_content`](#-pcp--pmlogger--config_content)
+* [`config_source`](#-pcp--pmlogger--config_source)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-pcp--pmlogger--ensure"></a>`ensure`
 
 Data type: `Enum['present', 'absent']`
 
@@ -450,7 +450,7 @@ Default is `present`.
 
 Default value: `'present'`
 
-##### <a name="hostname"></a>`hostname`
+##### <a name="-pcp--pmlogger--hostname"></a>`hostname`
 
 Data type: `String`
 
@@ -459,25 +459,25 @@ Default is `'LOCALHOSTNAME'`.
 
 Default value: `'LOCALHOSTNAME'`
 
-##### <a name="primary"></a>`primary`
+##### <a name="-pcp--pmlogger--primary"></a>`primary`
 
 Data type: `Boolean`
 
 Boolean that sets if this pmlogger is primary.
 Default is `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="socks"></a>`socks`
+##### <a name="-pcp--pmlogger--socks"></a>`socks`
 
 Data type: `Boolean`
 
 Boolean that sets if this pmlogger uses pmsocks.
 Default is `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="log_dir"></a>`log_dir`
+##### <a name="-pcp--pmlogger--log_dir"></a>`log_dir`
 
 Data type: `String`
 
@@ -486,7 +486,7 @@ Default is `PCP_LOG_DIR/pmlogger/LOCALHOSTNAME`.
 
 Default value: `'PCP_LOG_DIR/pmlogger/LOCALHOSTNAME'`
 
-##### <a name="args"></a>`args`
+##### <a name="-pcp--pmlogger--args"></a>`args`
 
 Data type: `String`
 
@@ -495,7 +495,7 @@ Default is an empty string.
 
 Default value: `''`
 
-##### <a name="config_path"></a>`config_path`
+##### <a name="-pcp--pmlogger--config_path"></a>`config_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
@@ -503,23 +503,23 @@ Config path for the pmlogger.
 If defined the value is passed as `-c value` to the pmlogger arguments.
 Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_content"></a>`config_content`
+##### <a name="-pcp--pmlogger--config_content"></a>`config_content`
 
 Data type: `Optional[String]`
 
 The pmlogger config contents.
 Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_source"></a>`config_source`
+##### <a name="-pcp--pmlogger--config_source"></a>`config_source`
 
 Data type: `Optional[String]`
 
 The pmlogger config source.
 Default is `undef`.
 
-Default value: ``undef``
+Default value: `undef`
 
