@@ -59,3 +59,4 @@ Tested using
 
 * RedHat/CentOS 7
 * RedHat/Rocky/AlmaLinux 8
+* RedHat/Rocky/AlmaLinux 9

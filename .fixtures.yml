@@ -1,10 +1,4 @@
 fixtures:
-  repositories:
+  forge_modules:
     stdlib:
-      repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
-      ref: 4.13.1
-    yumrepo_core:
-      repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
-      ref: 1.0.1
-  symlinks:
-    pcp: "#{source_dir}"
+      repo: puppetlabs/stdlib

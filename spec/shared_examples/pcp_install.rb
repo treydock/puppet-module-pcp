@@ -26,7 +26,7 @@ shared_examples_for 'pcp::install' do |facts|
   it { is_expected.to have_package_resource_count(packages.size) }
 
   packages.each do |package|
-    it { is_expected.to contain_package(package).with_ensure('present') }
+    it { is_expected.to contain_package(package).with_ensure('installed') }
   end
 
   context 'when package_ensure => latest' do
@@ -43,9 +43,9 @@ shared_examples_for 'pcp::install' do |facts|
     it { is_expected.to have_package_resource_count(packages.size + 1) }
 
     packages.each do |package|
-      it { is_expected.to contain_package(package).with_ensure('present') }
+      it { is_expected.to contain_package(package).with_ensure('installed') }
     end
-    it { is_expected.to contain_package('pcp-foo').with_ensure('present') }
+    it { is_expected.to contain_package('pcp-foo').with_ensure('installed') }
 
     context 'when package_ensure => latest' do
       let(:params) { { extra_packages: ['pcp-foo'], package_ensure: 'latest' } }
