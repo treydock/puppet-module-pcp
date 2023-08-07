@@ -6,7 +6,7 @@
 <title>
   Defined Type: pcp::pmda
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
 </div>
 
 
+
 <div class="tags">
   
   <div class="examples">
@@ -107,9 +108,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Ensure property for the PMDA. Valid values are
-<code>&#39;present&#39;</code> and <code>&#39;absent&#39;</code>. Default
-is <code>&#39;present&#39;</code>.</p>
+<p>Ensure property for the PMDA. Valid values are <code>&#39;present&#39;</code> and <code>&#39;absent&#39;</code>. Default is <code>&#39;present&#39;</code>.</p>
 </div>
       
     </li>
@@ -127,8 +126,7 @@ is <code>&#39;present&#39;</code>.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines of a package is associated with the PMDA. Default
-is <code>true</code>.</p>
+<p>Boolean that determines of a package is associated with the PMDA. Default is <code>true</code>.</p>
 </div>
       
     </li>
@@ -164,8 +162,7 @@ is <code>true</code>.</p>
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines if the package should be removed when
-<code>ensure</code> is <code>absent</code>. Default is <code>false</code>.</p>
+<p>Boolean that determines if the package should be removed when <code>ensure</code> is <code>absent</code>. Default is <code>false</code>.</p>
 </div>
       
     </li>
@@ -183,8 +180,7 @@ is <code>true</code>.</p>
       
         &mdash;
         <div class='inline'>
-<p>Configuration file path for this PMDA. Default is
-<code>/var/lib/pcp/config/${name}/${name}.conf</code>.</p>
+<p>Configuration file path for this PMDA. Default is <code>/var/lib/pcp/config/${name}/${name}.conf</code>.</p>
 </div>
       
     </li>
@@ -375,9 +371,7 @@ is <code>true</code>.</p>
 152
 153
 154
-155
-156
-157</pre>
+155</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/pmda.pp', line 34</span>
@@ -392,7 +386,6 @@ define pcp::pmda (
   Optional[String] $config_source             = undef,
   Optional[String] $args                      = undef,
 ) {
-
   include pcp
 
   $_package_name = pick($package_name, &quot;pcp-pmda-${name}&quot;)
@@ -504,7 +497,6 @@ define pcp::pmda (
       fail(&quot;pcp::pmda: ensure must be present or absent, ${ensure} given.&quot;)
     }
   }
-
 }</pre>
       </td>
     </tr>

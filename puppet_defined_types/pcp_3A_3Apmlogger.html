@@ -6,7 +6,7 @@
 <title>
   Defined Type: pcp::pmlogger
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
 </div>
 
 
+
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
@@ -97,8 +98,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The pmlogger ensure property. Valid values are <code>present</code> and
-<code>absent</code>. Default is <code>present</code>.</p>
+<p>The pmlogger ensure property. Valid values are <code>present</code> and <code>absent</code>. Default is <code>present</code>.</p>
 </div>
       
     </li>
@@ -116,8 +116,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Hostname associated with the pmlogger. Default is
-<code>&#39;LOCALHOSTNAME&#39;</code>.</p>
+<p>Hostname associated with the pmlogger. Default is <code>&#39;LOCALHOSTNAME&#39;</code>.</p>
 </div>
       
     </li>
@@ -135,8 +134,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Boolean that sets if this pmlogger is primary. Default is
-<code>false</code>.</p>
+<p>Boolean that sets if this pmlogger is primary. Default is <code>false</code>.</p>
 </div>
       
     </li>
@@ -154,8 +152,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Boolean that sets if this pmlogger uses pmsocks. Default is
-<code>false</code>.</p>
+<p>Boolean that sets if this pmlogger uses pmsocks. Default is <code>false</code>.</p>
 </div>
       
     </li>
@@ -173,8 +170,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Log directory for this pmlogger. Default is
-<code>PCP_LOG_DIR/pmlogger/LOCALHOSTNAME</code>.</p>
+<p>Log directory for this pmlogger. Default is <code>PCP_LOG_DIR/pmlogger/LOCALHOSTNAME</code>.</p>
 </div>
       
     </li>
@@ -210,8 +206,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Config path for the pmlogger. If defined the value is passed as <code>-c
-value</code> to the pmlogger arguments. Default is <code>undef</code>.</p>
+<p>Config path for the pmlogger. If defined the value is passed as <code>-c value</code> to the pmlogger arguments. Default is <code>undef</code>.</p>
 </div>
       
     </li>
@@ -328,9 +323,7 @@ value</code> to the pmlogger arguments. Default is <code>undef</code>.</p>
 96
 97
 98
-99
-100
-101</pre>
+99</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/pmlogger.pp', line 34</span>
@@ -341,12 +334,11 @@ define pcp::pmlogger (
   Boolean $primary                              = false,
   Boolean $socks                                = false,
   String $log_dir                               = &#39;PCP_LOG_DIR/pmlogger/LOCALHOSTNAME&#39;,
-  String $args                                  = &#39;&#39;,
+  String $args                                  = &#39;&#39;, # lint:ignore:params_empty_string_assignment
   Optional[Stdlib::Absolutepath] $config_path   = undef,
   Optional[String] $config_content              = undef,
   Optional[String] $config_source               = undef,
 ) {
-
   include pcp
 
   Class[&#39;pcp::install&#39;] -&gt; Pcp::Pmlogger[$title]
@@ -401,7 +393,6 @@ define pcp::pmlogger (
       before  =&gt; File[&quot;pmlogger-${name}&quot;],
     }
   }
-
 }</pre>
       </td>
     </tr>

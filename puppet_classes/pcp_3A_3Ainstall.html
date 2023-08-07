@@ -6,7 +6,7 @@
 <title>
   Puppet Class: pcp::install
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -79,6 +79,7 @@
 </div>
 
 
+
 <div class="tags">
   
 
@@ -110,9 +111,9 @@
       <td>
         <pre class="code"><span class="info file"># File 'manifests/install.pp', line 2</span>
 
-class pcp::install{
+class pcp::install {
   if $pcp::_package_ensure != &#39;absent&#39; {
-    ensure_packages($pcp::packages, {&#39;ensure&#39; =&gt; $pcp::_package_ensure})
+    ensure_packages($pcp::packages, { &#39;ensure&#39; =&gt; $pcp::_package_ensure })
   } else {
     $pcp::packages.each |$package| {
       exec { &quot;remove ${package}&quot;:
@@ -124,7 +125,7 @@ class pcp::install{
     }
   }
 
-  ensure_packages($pcp::extra_packages, {&#39;ensure&#39; =&gt; $pcp::_package_ensure})
+  ensure_packages($pcp::extra_packages, { &#39;ensure&#39; =&gt; $pcp::_package_ensure })
 }</pre>
       </td>
     </tr>

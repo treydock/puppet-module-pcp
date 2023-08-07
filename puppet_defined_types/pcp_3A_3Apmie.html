@@ -6,7 +6,7 @@
 <title>
   Defined Type: pcp::pmie
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
 </div>
 
 
+
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
@@ -97,8 +98,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The pmie ensure property. Valid values are <code>present</code> and
-<code>absent</code>. Default is <code>present</code>.</p>
+<p>The pmie ensure property. Valid values are <code>present</code> and <code>absent</code>. Default is <code>present</code>.</p>
 </div>
       
     </li>
@@ -116,8 +116,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Hostname associated with the pmie. Default is
-<code>&#39;LOCALHOSTNAME&#39;</code>.</p>
+<p>Hostname associated with the pmie. Default is <code>&#39;LOCALHOSTNAME&#39;</code>.</p>
 </div>
       
     </li>
@@ -171,8 +170,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The pmie control log file. Default is
-<code>PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log</code></p>
+<p>The pmie control log file. Default is <code>PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log</code></p>
 </div>
       
     </li>
@@ -208,8 +206,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Config path for the pmie. If defined the value is passed as <code>-c
-value</code> to the pmie arguments. Default is <code>undef</code>.</p>
+<p>Config path for the pmie. If defined the value is passed as <code>-c value</code> to the pmie arguments. Default is <code>undef</code>.</p>
 </div>
       
     </li>
@@ -320,9 +317,7 @@ value</code> to the pmie arguments. Default is <code>undef</code>.</p>
 84
 85
 86
-87
-88
-89</pre>
+87</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/pmie.pp', line 28</span>
@@ -333,12 +328,11 @@ define pcp::pmie (
   Boolean $primary                              = false,
   Boolean $socks                                = false,
   String $log_file                              = &#39;PCP_LOG_DIR/pmie/LOCALHOSTNAME/pmie.log&#39;,
-  String $args                                  = &#39;&#39;,
+  String $args                                  = &#39;&#39;, # lint:ignore:params_empty_string_assignment
   Optional[Stdlib::Absolutepath] $config_path   = undef,
   Optional[String] $config_content              = undef,
   Optional[String] $config_source               = undef,
 ) {
-
   include pcp
 
   Class[&#39;pcp::install&#39;] -&gt; Pcp::Pmie[$title]
@@ -387,7 +381,6 @@ define pcp::pmie (
       before  =&gt; File[&quot;pmie-${name}&quot;],
     }
   }
-
 }</pre>
       </td>
     </tr>

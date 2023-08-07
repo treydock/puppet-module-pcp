@@ -6,7 +6,7 @@
 <title>
   Puppet Class: pcp
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
     
   </div>
 </div>
+
 
 
 <div class="tags">
@@ -179,9 +180,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Set service ensure property for <code>pmcd</code>, <code>pmie</code> and
-<code>pmlogger</code> services. Default is based on <code>ensure</code>
-parameter.</p>
+<p>Set service ensure property for <code>pmcd</code>, <code>pmie</code> and <code>pmlogger</code> services. Default is based on <code>ensure</code> parameter.</p>
 </div>
       
     </li>
@@ -199,9 +198,7 @@ parameter.</p>
       
         &mdash;
         <div class='inline'>
-<p>Set service enable property for <code>pmcd</code>, <code>pmie</code> and
-<code>pmlogger</code> services. Default is based on <code>ensure</code>
-parameter.</p>
+<p>Set service enable property for <code>pmcd</code>, <code>pmie</code> and <code>pmlogger</code> services. Default is based on <code>ensure</code> parameter.</p>
 </div>
       
     </li>
@@ -541,9 +538,7 @@ parameter.</p>
 119
 120
 121
-122
-123
-124</pre>
+122</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 50</span>
@@ -575,7 +570,6 @@ class pcp (
   Hash $pmies                                   = {},
   Hash $pmloggers                               = {},
 ) {
-
   case $ensure {
     &#39;running&#39;: {
       $_package_ensure    = $package_ensure
@@ -621,7 +615,6 @@ class pcp (
   -&gt; Class[&#39;pcp::config&#39;]
   -&gt; Class[&#39;pcp::resources&#39;]
   -&gt; Class[&#39;pcp::service&#39;]
-
 }</pre>
       </td>
     </tr>

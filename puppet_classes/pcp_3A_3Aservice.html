@@ -6,7 +6,7 @@
 <title>
   Puppet Class: pcp::service
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -79,6 +79,7 @@
 </div>
 
 
+
 <div class="tags">
   
 
@@ -133,15 +134,12 @@
 42
 43
 44
-45
-46
-47</pre>
+45</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/service.pp', line 2</span>
 
 class pcp::service {
-
   if $pcp::enable_pmproxy {
     $_pmproxy_ensure = &#39;running&#39;
     $_pmproxy_enable = true
@@ -184,7 +182,6 @@ class pcp::service {
     hasstatus  =&gt; true,
     hasrestart =&gt; true,
   }
-
 }</pre>
       </td>
     </tr>

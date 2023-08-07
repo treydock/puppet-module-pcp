@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -60,17 +60,13 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-puppet-module-pcp">puppet-module-pcp</h1>
 
-<p><a href="https://forge.puppetlabs.com/treydock/pcp"><img
-src="http://img.shields.io/puppetforge/v/treydock/pcp.svg"></a> <a
-href="https://github.com/treydock/puppet-module-pcp/actions?query=workflow%3ACI"><img
-src="https://github.com/treydock/puppet-module-pcp/workflows/CI/badge.svg?branch=master"></a></p>
+<p><a href="https://forge.puppetlabs.com/treydock/pcp"><img src="http://img.shields.io/puppetforge/v/treydock/pcp.svg"></a> <a href="https://github.com/treydock/puppet-module-pcp/actions?query=workflow%3ACI"><img src="https://github.com/treydock/puppet-module-pcp/workflows/CI/badge.svg?branch=master"></a></p>
 <ol><li>
 <p><a href="#overview">Overview</a></p>
 </li><li>
 <p><a href="#usage">Usage - Configuration options</a></p>
 </li><li>
-<p><a href="#reference">Reference - Parameter and detailed reference to all
-options</a></p>
+<p><a href="#reference">Reference - Parameter and detailed reference to all options</a></p>
 <ul><li>
 <p><a href="#public-classes">Public Classes</a></p>
 </li><li>
@@ -79,8 +75,7 @@ options</a></p>
 </li><li>
 <p><a href="#compatibility">Compatibility</a></p>
 </li><li>
-<p><a href="#development">Development - Guide for contributing to the
-module</a></p>
+<p><a href="#development">Development - Guide for contributing to the module</a></p>
 </li></ol>
 
 <h2 id="label-Overview">Overview</h2>
@@ -96,8 +91,7 @@ module</a></p>
 <pre class="code ruby"><code class="ruby">class { &#39;pcp&#39;: }
 </code></pre>
 
-<p>Example of using PCP without default logger and pmie as well as disabling
-pmlogger log archival</p>
+<p>Example of using PCP without default logger and pmie as well as disabling pmlogger log archival</p>
 
 <pre class="code ruby"><code class="ruby">class { &#39;::pcp&#39;:
   include_default_pmlogger =&gt; false,
@@ -125,8 +119,7 @@ pmlogger log archival</p>
 
 <h2 id="label-Reference">Reference</h2>
 
-<p><a
-href="http://treydock.github.io/puppet-module-pcp/">treydock.github.io/puppet-module-pcp/</a></p>
+<p><a href="http://treydock.github.io/puppet-module-pcp/">treydock.github.io/puppet-module-pcp/</a></p>
 
 <h2 id="label-Compatibility">Compatibility</h2>
 
@@ -136,7 +129,9 @@ href="http://treydock.github.io/puppet-module-pcp/">treydock.github.io/puppet-mo
 <ul><li>
 <p>RedHat/CentOS 7</p>
 </li><li>
-<p>RedHat/Rocky 8</p>
+<p>RedHat/Rocky/AlmaLinux 8</p>
+</li><li>
+<p>RedHat/Rocky/AlmaLinux 9</p>
 </li></ul>
 </div></div>
 

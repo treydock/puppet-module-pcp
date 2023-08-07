@@ -6,7 +6,7 @@
 <title>
   Puppet Class: pcp::config
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -77,6 +77,7 @@
     
   </div>
 </div>
+
 
 
 <div class="tags">
@@ -153,15 +154,12 @@
 62
 63
 64
-65
-66
-67</pre>
+65</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 2</span>
 
 class pcp::config {
-
   file { &#39;/etc/pcp/pmlogger/control.d&#39;:
     ensure  =&gt; $pcp::_directory_ensure,
     owner   =&gt; &#39;root&#39;,
@@ -176,7 +174,7 @@ class pcp::config {
     pcp::pmlogger { &#39;local&#39;:
       ensure  =&gt; $pcp::_resource_ensure,
       primary =&gt; true,
-      args    =&gt; &#39;-r -T24h10m -c config.default&#39;
+      args    =&gt; &#39;-r -T24h10m -c config.default&#39;,
     }
   }
 
@@ -224,7 +222,6 @@ class pcp::config {
       changes =&gt; $pcp_conf_changes,
     }
   }
-
 }</pre>
       </td>
     </tr>
