@@ -1,7 +1,7 @@
 # @api private
-class pcp::install{
+class pcp::install {
   if $pcp::_package_ensure != 'absent' {
-    ensure_packages($pcp::packages, {'ensure' => $pcp::_package_ensure})
+    ensure_packages($pcp::packages, { 'ensure' => $pcp::_package_ensure })
   } else {
     $pcp::packages.each |$package| {
       exec { "remove ${package}":
@@ -13,5 +13,5 @@ class pcp::install{
     }
   }
 
-  ensure_packages($pcp::extra_packages, {'ensure' => $pcp::_package_ensure})
+  ensure_packages($pcp::extra_packages, { 'ensure' => $pcp::_package_ensure })
 }

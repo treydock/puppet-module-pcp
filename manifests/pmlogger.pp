@@ -37,12 +37,11 @@ define pcp::pmlogger (
   Boolean $primary                              = false,
   Boolean $socks                                = false,
   String $log_dir                               = 'PCP_LOG_DIR/pmlogger/LOCALHOSTNAME',
-  String $args                                  = '',
+  String $args                                  = '', # lint:ignore:params_empty_string_assignment
   Optional[Stdlib::Absolutepath] $config_path   = undef,
   Optional[String] $config_content              = undef,
   Optional[String] $config_source               = undef,
 ) {
-
   include pcp
 
   Class['pcp::install'] -> Pcp::Pmlogger[$title]
@@ -97,5 +96,4 @@ define pcp::pmlogger (
       before  => File["pmlogger-${name}"],
     }
   }
-
 }

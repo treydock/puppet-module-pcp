@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'pcp::config' do |_facts|
   it do
     is_expected.to contain_file('/etc/pcp/pmlogger/control.d').with(ensure: 'directory',
@@ -37,7 +39,7 @@ shared_examples_for 'pcp::config' do |_facts|
     verify_contents(catalogue, '/etc/cron.d/pcp-pmlogger',
                     [
                       '10     0  *  *  *  pcp  /usr/libexec/pcp/bin/pmlogger_daily -X xz -x 3',
-                      '25,55  *  *  *  *  pcp  /usr/libexec/pcp/bin/pmlogger_check -C',
+                      '25,55  *  *  *  *  pcp  /usr/libexec/pcp/bin/pmlogger_check -C'
                     ])
   end
 
@@ -51,7 +53,7 @@ shared_examples_for 'pcp::config' do |_facts|
   it do
     verify_contents(catalogue, '/etc/cron.d/pcp-pmie', [
                       '08     0  *  *  *  pcp  /usr/libexec/pcp/bin/pmie_daily -X xz -x 3',
-                      '28,58  *  *  *  *  pcp  /usr/libexec/pcp/bin/pmie_check -C',
+                      '28,58  *  *  *  *  pcp  /usr/libexec/pcp/bin/pmie_check -C'
                     ])
   end
 

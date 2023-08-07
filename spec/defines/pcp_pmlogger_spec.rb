@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'pcp::pmlogger' do
@@ -23,14 +25,14 @@ describe 'pcp::pmlogger' do
                                                            content: [
                                                              '#This file is managed by Puppet',
                                                              'LOCALHOSTNAME y n PCP_LOG_DIR/pmlogger/LOCALHOSTNAME -r -T24h10m -c config.default',
-                                                             '',
+                                                             ''
                                                            ].join("\n"),
                                                            notify: 'Service[pmlogger]')
       end
 
       it { is_expected.not_to contain_file('pmlogger-local-config') }
 
-      context 'SUPReMM example' do
+      describe 'SUPReMM example' do
         let(:title) { 'supremm' }
         let(:params) do
           {
@@ -41,7 +43,7 @@ describe 'pcp::pmlogger' do
             log_dir: '/dne/supremm/LOCALHOSTNAME/$(date +%Y/%m/%d)',
             args: '-r',
             config_path: '/etc/pcp/pmlogger/pmlogger-supremm.config',
-            config_content: 'some content',
+            config_content: 'some content'
           }
         end
 
@@ -57,7 +59,7 @@ describe 'pcp::pmlogger' do
             content: [
               '#This file is managed by Puppet',
               'LOCALHOSTNAME y n "/dne/supremm/LOCALHOSTNAME/$(date +%Y/%m/%d)" -r -c /etc/pcp/pmlogger/pmlogger-supremm.config',
-              '',
+              ''
             ].join("\n"),
             notify: 'Service[pmlogger]',
           )

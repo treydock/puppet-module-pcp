@@ -58,4 +58,4 @@ This module only works with PCP >= 3.11.3
 Tested using
 
 * RedHat/CentOS 7
-* RedHat/Rocky 8
+* RedHat/Rocky/AlmaLinux 8

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'pcp::resources' do |_facts|
   it { is_expected.to have_pcp__pmda_resource_count(0) }
   it { is_expected.to have_pcp__pmie_resource_count(1) }
@@ -8,19 +10,19 @@ shared_examples_for 'pcp::resources' do |_facts|
       {
         pmdas: {
           'test' => {
-            'has_package' => true,
-          },
+            'has_package' => true
+          }
         },
         pmies: {
           'test' => {
-            'log_file' => 'EXAMPLE',
-          },
+            'log_file' => 'EXAMPLE'
+          }
         },
         pmloggers: {
           'test' => {
-            'log_dir' => 'EXAMPLE',
-          },
-        },
+            'log_dir' => 'EXAMPLE'
+          }
+        }
       }
     end
 

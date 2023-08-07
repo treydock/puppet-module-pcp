@@ -74,7 +74,6 @@ class pcp (
   Hash $pmies                                   = {},
   Hash $pmloggers                               = {},
 ) {
-
   case $ensure {
     'running': {
       $_package_ensure    = $package_ensure
@@ -120,5 +119,4 @@ class pcp (
   -> Class['pcp::config']
   -> Class['pcp::resources']
   -> Class['pcp::service']
-
 }

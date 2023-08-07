@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'pcp::install' do |facts|
   packages = if facts[:os]['release']['major'].to_s == '7'
                [
@@ -7,7 +9,7 @@ shared_examples_for 'pcp::install' do |facts|
                  'pcp-libs',
                  'perl-PCP-PMDA',
                  'python-pcp',
-                 'pcp-selinux',
+                 'pcp-selinux'
                ]
              else
                [
@@ -17,7 +19,7 @@ shared_examples_for 'pcp::install' do |facts|
                  'pcp-libs',
                  'perl-PCP-PMDA',
                  'python3-pcp',
-                 'pcp-selinux',
+                 'pcp-selinux'
                ]
              end
 
@@ -39,6 +41,7 @@ shared_examples_for 'pcp::install' do |facts|
     let(:params) { { extra_packages: ['pcp-foo'] } }
 
     it { is_expected.to have_package_resource_count(packages.size + 1) }
+
     packages.each do |package|
       it { is_expected.to contain_package(package).with_ensure('present') }
     end
