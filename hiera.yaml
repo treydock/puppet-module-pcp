@@ -9,6 +9,6 @@ hierarchy:
   - name: 'os family major release'
     path: "os/%{facts.os.family}/%{facts.os.release.major}.yaml"
   - name: 'os family'
-    path: "os/%{facts.os.family}/common.yaml"
+    path: "os/%{facts.os.family}.yaml"
   - name: 'common'
     path: 'common.yaml'
